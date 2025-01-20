@@ -206,6 +206,7 @@ dependencies {
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
 
+
     // GTCEuM
     implementation fg.deobf("com.gregtechceu.gtceu:gtceu-$project.minecraft_version:$project.gtceu") { transitive = false }
     // LDLib
@@ -214,14 +215,14 @@ dependencies {
     //implementation fg.deobf("com.tterrag.registrate:Registrate:$project.registrate")
     // Jade
     compileOnly fg.deobf("maven.modrinth:jade:$project.jade-$project.minecraft_version,forge")
+
     // REI
-    // Configuration
-    runtimeOnly fg.deobf("dev.toma.configuration:configuration-forge-$project.minecraft_version:$project.configuration")
-    // JEI
-    compileOnly fg.deobf("mezz.jei:jei-$project.minecraft_version-common-api:$project.jei")
-    compileOnly fg.deobf("mezz.jei:jei-$project.minecraft_version-forge-api:$project.jei")
-    runtimeOnly fg.deobf("mezz.jei:jei-$project.minecraft_version-forge:$project.jei") { transitive = false }
-    //runtimeOnly fg.deobf("mezz.jei:jei-$project.minecraft_version-forge:$project.jei")
+    // Configuration 1.2.2.0
+    runtimeOnly fg.deobf("dev.toma.configuration:configuration-forge-1.20.1:2.2.0")
+    // JEI 15.20.0.150
+    compileOnly fg.deobf("mezz.jei:jei-1.20.1-common-api:15.20.0.105")
+    compileOnly fg.deobf("mezz.jei:jei-1.20.1-forge-api:15.20.0.105")
+    runtimeOnly fg.deobf("mezz.jei:jei-1.20.1-forge:15.20.0.105") { transitive = false }
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.
