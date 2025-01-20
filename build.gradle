@@ -206,8 +206,8 @@ dependencies {
 
     // GTCEuM 1.6.3
     implementation fg.deobf("com.gregtechceu.gtceu:gtceu-1.20.1:1.6.3") { transitive = false }
-    // LDLib 1.0.28.a
-    implementation fg.deobf("com.lowdragmc.ldlib:ldlib-forge-1.20.1:1.0.28.a") { transitive = false }
+    // LDLib 1.0.31
+    implementation fg.deobf("com.lowdragmc.ldlib:ldlib-forge-1.20.1:1.0.31") { transitive = false }
     // Registrate MC1.20-1.3.11
     implementation fg.deobf("com.tterrag.registrate:Registrate:MC1.20-1.3.11")
     // Jade
@@ -219,7 +219,6 @@ dependencies {
     compileOnly fg.deobf("mezz.jei:jei-1.20.1-common-api:15.20.0.105")
     compileOnly fg.deobf("mezz.jei:jei-1.20.1-forge-api:15.20.0.105")
     runtimeOnly fg.deobf("mezz.jei:jei-1.20.1-forge:15.20.0.105") { transitive = false }
-    //runtimeOnly fg.deobf("mezz.jei:jei-$project.minecraft_version-forge:$project.jei")
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.
