@@ -83,6 +83,8 @@ minecraft {
         }
 
         client {
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
             // Comma-separated list of namespaces to load gametests from. Empty = all namespaces.
             property 'forge.enabledGameTestNamespaces', mod_id
         }
@@ -209,9 +211,9 @@ dependencies {
     // LDLib
     implementation fg.deobf("com.lowdragmc.ldlib:ldlib-forge-$project.minecraft_version:$project.ldlib") { transitive = false }
     // Registrate
-    implementation fg.deobf("com.tterrag.registrate:Registrate:$project.registrate")
+    //implementation fg.deobf("com.tterrag.registrate:Registrate:$project.registrate")
     // Jade
-    compileOnly fg.deobf("maven.modrinth:Jade-$project.minecraft_version-forge-$project.jade")
+    compileOnly fg.deobf("maven.modrinth:jade:$project.jade-$project.minecraft_version,forge")
     // REI
     // Configuration
     runtimeOnly fg.deobf("dev.toma.configuration:configuration-forge-$project.minecraft_version:$project.configuration")
