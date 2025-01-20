@@ -3,7 +3,7 @@ plugins {
     id 'idea'
     id 'maven-publish'
     id 'net.minecraftforge.gradle' version '[6.0,6.2)'
-    id 'org.parchmentmc.librarian.forgegradle' version '1.+'
+    id 'org.spongepowered.mixin' version '0.7.+'
 }
 
 version = mod_version
@@ -117,6 +117,7 @@ sourceSets.main.resources { srcDir 'src/generated/resources' }
 repositories {
     //mavenLocal()
 
+    // GTCEuM
     maven {
         name = 'GTCEu Maven'
         url = 'https://maven.gtceu.com'
@@ -124,63 +125,65 @@ repositories {
             includeGroup 'com.gregtechceu.gtceu'
         }
     }
-    // mavens for Forge-exclusives
-    maven { url = "https://api.modrinth.com/maven" } // Jade
-    maven { url = "https://maven.theillusivec4.top/" } // Curios
-    maven { url = "https://maven.terraformersmc.com/releases/" } // Mod Menu, EMI
-    maven { // Create Forge and Registrate Forge
-        url = "https://maven.tterrag.com/"
-        content {
-            includeGroup("com.tterrag.registrate")
-            includeGroup("com.simibubi.create")
-        }
-    }
-    maven { url = "https://maven.parchmentmc.org" } // Parchment mappings
-    maven { url = "https://maven.quiltmc.org/repository/release" } // Quilt Mappings
-    maven { // TOP
-        url "https://maven.k-4u.nl"
-    }
+    // LDLib / Configuration
     maven {
-        // saps.dev Maven (KubeJS and Rhino)
-        url = "https://maven.saps.dev/minecraft"
-        content {
-            includeGroup "dev.latvian.mods"
-        }
-    }
-    maven { url = "https://maven.shedaniel.me/" } // Cloth Config, REI
-    maven {
-        url "https://cursemaven.com"
-        content {
-            includeGroup "curse.maven"
-        }
-    } // Curse Forge File
-    maven {
-        name = "Jared's maven"
-        url = "https://maven.blamejared.com/"
-    } // JEI
-    maven { url 'https://jitpack.io' } // MixinExtras
-    maven {
-        // location of a maven mirror for JEI files, as a fallback
-        name = "ModMaven"
-        url = "https://modmaven.dev"
-    } // JEI mirror, AE2
-    maven { url = "https://maven.parchmentmc.org" } // Parchment mappings
-    maven { url = "https://maven.quiltmc.org/repository/release/" } // Quilt Mappings
-    // LDLib
-    maven { url = 'https://maven.firstdarkdev.xyz/snapshots'
+        url = 'https://maven.firstdarkdev.xyz/snapshots'
         content {
             includeGroup 'com.lowdragmc.ldlib'
             includeGroup 'dev.toma.configuration'
         }
     }
+    // Applied Energistics 2
     maven {
-        name = "redlance"
-        url = "https://repo.constructlegacy.ru/public"
+        name = "ModMaven"
+        url = "https://modmaven.dev"
     }
+    // Kotlin for Forge
     maven {
-        name = "mixin"
-        url = "https://repo.spongepowered.org/repository/maven-public/"
+        name = 'Kotlin for Forge'
+        url = 'https://thedarkcolour.github.io/KotlinForForge/'
+        content {
+            includeGroup "thedarkcolour"
+        }
     }
+    // EMI
+    maven {
+        name = "TerraformersMC"
+        url = "https://maven.terraformersmc.com/"
+    }
+    // Jade
+    exclusiveContent {
+        forRepository {
+            maven {
+                name = "Modrinth"
+                url = "https://api.modrinth.com/maven"
+            }
+        }
+        forRepositories(fg.repository) // Only add this if you're using ForgeGradle, otherwise remove this line
+        filter {
+            includeGroup "maven.modrinth"
+        }
+    }
+//    maven {
+//        url = "https://maven.tterrag.com/"
+//        content {
+//            includeGroup("com.tterrag.registrate")
+//            includeGroup("com.simibubi.create")
+//        }
+//    }
+//    maven {
+//        // saps.dev Maven (KubeJS and Rhino)
+//        url = "https://maven.saps.dev/minecraft"
+//        content {
+//            includeGroup "dev.latvian.mods"
+//        }
+//    }
+//    maven {
+//        url "https://cursemaven.com"
+//        content {
+//            includeGroup "curse.maven"
+//        }
+//    }
 }
 
 dependencies {
@@ -190,6 +193,9 @@ dependencies {
     // If the group id is "net.minecraft" and the artifact id is one of ["client", "server", "joined"],
     // then special handling is done to allow a setup of a vanilla dependency without the use of an external repository.
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
+
+    // Apply Mixin AP
+    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 
     // Example mod dependency with JEI - using fg.deobf() ensures the dependency is remapped to your development mappings
     // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime
@@ -207,22 +213,14 @@ dependencies {
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
 
 
-    // GTCEuM
-    implementation fg.deobf("com.gregtechceu.gtceu:gtceu-$project.minecraft_version:$project.gtceu") { transitive = false }
-    // LDLib
-    implementation fg.deobf("com.lowdragmc.ldlib:ldlib-forge-$project.minecraft_version:$project.ldlib") { transitive = false }
-    // Registrate
-    //implementation fg.deobf("com.tterrag.registrate:Registrate:$project.registrate")
-    // Jade
-    compileOnly fg.deobf("maven.modrinth:jade:$project.jade-$project.minecraft_version,forge")
+    implementation fg.deobf("com.gregtechceu.gtceu:gtceu-${minecraft_version}:${gtm_version}")
+}
 
-    // REI
-    // Configuration 1.2.2.0
-    runtimeOnly fg.deobf("dev.toma.configuration:configuration-forge-1.20.1:2.2.0")
-    // JEI 15.20.0.150
-    compileOnly fg.deobf("mezz.jei:jei-1.20.1-common-api:15.20.0.105")
-    compileOnly fg.deobf("mezz.jei:jei-1.20.1-forge-api:15.20.0.105")
-    runtimeOnly fg.deobf("mezz.jei:jei-1.20.1-forge:15.20.0.105") { transitive = false }
+// MixinGradle Settings
+mixin {
+    add sourceSets.main, 'mixins.materialreplication.refmap.json'
+    config 'mixins.materialreplication.json'
+
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.

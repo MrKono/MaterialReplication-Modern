@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "kono.materialreplication.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "nayutachest.refmap.json",
+  "mixins": [
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
