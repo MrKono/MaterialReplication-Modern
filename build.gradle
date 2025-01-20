@@ -3,6 +3,7 @@ plugins {
     id 'idea'
     id 'maven-publish'
     id 'net.minecraftforge.gradle' version '[6.0,6.2)'
+    id 'org.parchmentmc.librarian.forgegradle' version '1.+'
 }
 
 version = mod_version
@@ -112,14 +113,72 @@ minecraft {
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 repositories {
-    // Put repositories for dependencies here
-    // ForgeGradle automatically adds the Forge maven and Maven Central for you
+    //mavenLocal()
 
-    // If you have mod jar dependencies in ./libs, you can declare them as a repository like so.
-    // See https://docs.gradle.org/current/userguide/declaring_repositories.html#sub:flat_dir_resolver
-    // flatDir {
-    //     dir 'libs'
-    // }
+    maven {
+        name = 'GTCEu Maven'
+        url = 'https://maven.gtceu.com'
+        content {
+            includeGroup 'com.gregtechceu.gtceu'
+        }
+    }
+    // mavens for Forge-exclusives
+    maven { url = "https://api.modrinth.com/maven" } // Jade
+    maven { url = "https://maven.theillusivec4.top/" } // Curios
+    maven { url = "https://maven.terraformersmc.com/releases/" } // Mod Menu, EMI
+    maven { // Create Forge and Registrate Forge
+        url = "https://maven.tterrag.com/"
+        content {
+            includeGroup("com.tterrag.registrate")
+            includeGroup("com.simibubi.create")
+        }
+    }
+    maven { url = "https://maven.parchmentmc.org" } // Parchment mappings
+    maven { url = "https://maven.quiltmc.org/repository/release" } // Quilt Mappings
+    maven { // TOP
+        url "https://maven.k-4u.nl"
+    }
+    maven {
+        // saps.dev Maven (KubeJS and Rhino)
+        url = "https://maven.saps.dev/minecraft"
+        content {
+            includeGroup "dev.latvian.mods"
+        }
+    }
+    maven { url = "https://maven.shedaniel.me/" } // Cloth Config, REI
+    maven {
+        url "https://cursemaven.com"
+        content {
+            includeGroup "curse.maven"
+        }
+    } // Curse Forge File
+    maven {
+        name = "Jared's maven"
+        url = "https://maven.blamejared.com/"
+    } // JEI
+    maven { url 'https://jitpack.io' } // MixinExtras
+    maven {
+        // location of a maven mirror for JEI files, as a fallback
+        name = "ModMaven"
+        url = "https://modmaven.dev"
+    } // JEI mirror, AE2
+    maven { url = "https://maven.parchmentmc.org" } // Parchment mappings
+    maven { url = "https://maven.quiltmc.org/repository/release/" } // Quilt Mappings
+    // LDLib
+    maven { url = 'https://maven.firstdarkdev.xyz/snapshots'
+        content {
+            includeGroup 'com.lowdragmc.ldlib'
+            includeGroup 'dev.toma.configuration'
+        }
+    }
+    maven {
+        name = "redlance"
+        url = "https://repo.constructlegacy.ru/public"
+    }
+    maven {
+        name = "mixin"
+        url = "https://repo.spongepowered.org/repository/maven-public/"
+    }
 }
 
 dependencies {
@@ -144,6 +203,23 @@ dependencies {
     // For more info:
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
+
+    // GTCEuM
+    implementation fg.deobf("com.gregtechceu.gtceu:gtceu-$project.minecraft_version:$project.gtceu") { transitive = false }
+    // LDLib
+    implementation fg.deobf("com.lowdragmc.ldlib:ldlib-forge-$project.minecraft_version:$project.ldlib") { transitive = false }
+    // Registrate
+    implementation fg.deobf("com.tterrag.registrate:Registrate:$project.registrate")
+    // Jade
+    compileOnly fg.deobf("maven.modrinth:Jade-$project.minecraft_version-forge-$project.jade")
+    // REI
+    // Configuration
+    runtimeOnly fg.deobf("dev.toma.configuration:configuration-forge-$project.minecraft_version:$project.configuration")
+    // JEI
+    compileOnly fg.deobf("mezz.jei:jei-$project.minecraft_version-common-api:$project.jei")
+    compileOnly fg.deobf("mezz.jei:jei-$project.minecraft_version-forge-api:$project.jei")
+    runtimeOnly fg.deobf("mezz.jei:jei-$project.minecraft_version-forge:$project.jei") { transitive = false }
+    //runtimeOnly fg.deobf("mezz.jei:jei-$project.minecraft_version-forge:$project.jei")
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.
