@@ -3,6 +3,7 @@ package kono.materialreplication;
 import com.gregtechceu.gtceu.api.addon.GTAddon;
 import com.gregtechceu.gtceu.api.addon.IGTAddon;
 import com.gregtechceu.gtceu.api.registry.registrate.GTRegistrate;
+import kono.materialreplication.data.recipe.MRRecipeManager;
 import kono.materialreplication.registry.MRRegistration;
 import net.minecraft.data.recipes.FinishedRecipe;
 
@@ -31,5 +32,6 @@ public class MaterialReplicationGTAddon implements IGTAddon {
 
     @Override
     public void addRecipes(Consumer<FinishedRecipe> provider) {
+        MRRecipeManager.init(provider);
     }
 }
