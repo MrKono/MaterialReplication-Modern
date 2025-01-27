@@ -3,6 +3,7 @@ package kono.materialreplication.registry;
 import com.gregtechceu.gtceu.api.GTCEuAPI;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
+
 import kono.materialreplication.registry.materials.MRMaterial;
 import kono.materialreplication.registry.materials.MRMaterialFlags;
 

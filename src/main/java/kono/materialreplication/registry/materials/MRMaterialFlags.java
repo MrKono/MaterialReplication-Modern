@@ -3,6 +3,7 @@ package kono.materialreplication.registry.materials;
 import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlag;
 
 public class MRMaterialFlags {
+
     /**
      * Disables deconstruction recipe generation for this material
      */

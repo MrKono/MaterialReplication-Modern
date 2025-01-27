@@ -1,8 +1,9 @@
 package kono.materialreplication.data;
 
-import com.tterrag.registrate.providers.ProviderType;
 import kono.materialreplication.data.lang.EnglishLangHandler;
 import kono.materialreplication.registry.MRRegistration;
+
+import com.tterrag.registrate.providers.ProviderType;
 
 public class MaterialReplicationDataGen {
 

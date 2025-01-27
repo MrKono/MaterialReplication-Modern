@@ -1,15 +1,16 @@
 package kono.materialreplication;
 
-import com.gregtechceu.gtceu.api.machine.MachineDefinition;
-import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
-import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
-import kono.materialreplication.client.ClientProxy;
-import kono.materialreplication.common.CommonProxy;
-import kono.materialreplication.event.EventHandler;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+
+import com.gregtechceu.gtceu.api.machine.MachineDefinition;
+import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
+
+import kono.materialreplication.client.ClientProxy;
+import kono.materialreplication.common.CommonProxy;
+import kono.materialreplication.event.EventHandler;
 
 @Mod(MRUtils.MODID)
 public class MaterialReplication {

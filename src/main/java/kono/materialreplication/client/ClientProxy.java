@@ -9,7 +9,5 @@ public class ClientProxy extends CommonProxy {
         init();
     }
 
-    public static void init() {
-
-    }
+    public static void init() {}
 }

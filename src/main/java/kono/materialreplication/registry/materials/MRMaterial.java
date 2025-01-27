@@ -2,6 +2,7 @@ package kono.materialreplication.registry.materials;
 
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconSet;
+
 import kono.materialreplication.registry.MRMaterials;
 
 import static kono.materialreplication.MRUtils.mrId;

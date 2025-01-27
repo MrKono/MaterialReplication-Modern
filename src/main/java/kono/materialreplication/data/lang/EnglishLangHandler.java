@@ -1,10 +1,12 @@
 package kono.materialreplication.data.lang;
 
 import com.gregtechceu.gtceu.data.lang.LangHandler;
-import com.tterrag.registrate.providers.RegistrateLangProvider;
+
 import kono.materialreplication.registry.MRMaterials;
 
-public class EnglishLangHandler extends LangHandler{
+import com.tterrag.registrate.providers.RegistrateLangProvider;
+
+public class EnglishLangHandler extends LangHandler {
 
     public static void init(RegistrateLangProvider provider) {
         // Materials

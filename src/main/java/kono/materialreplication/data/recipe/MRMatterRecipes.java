@@ -1,17 +1,20 @@
 package kono.materialreplication.data.recipe;
 
+import java.util.function.Consumer;
+
+import net.minecraft.data.recipes.FinishedRecipe;
+
+import org.jetbrains.annotations.NotNull;
+
 import com.gregtechceu.gtceu.api.GTCEuAPI;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.api.data.chemical.material.properties.PropertyKey;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.data.recipe.builder.GTRecipeBuilder;
+
 import kono.materialreplication.MaterialReplicationConfig;
 import kono.materialreplication.registry.MRMaterials;
 import kono.materialreplication.registry.materials.MRMaterialFlags;
-import net.minecraft.data.recipes.FinishedRecipe;
-import org.jetbrains.annotations.NotNull;
-
-import java.util.function.Consumer;
 
 import static kono.materialreplication.MRUtils.*;
 import static kono.materialreplication.registry.MRRecipeTypes.*;

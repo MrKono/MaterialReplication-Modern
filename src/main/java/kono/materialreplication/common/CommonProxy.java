@@ -1,15 +1,16 @@
 package kono.materialreplication.common;
 
+import net.minecraftforge.eventbus.api.EventPriority;
+import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+
 import com.gregtechceu.gtceu.api.data.chemical.material.event.MaterialEvent;
+
 import kono.materialreplication.MaterialReplicationConfig;
 import kono.materialreplication.data.MaterialReplicationDataGen;
 import kono.materialreplication.registry.MRMaterials;
 import kono.materialreplication.registry.MRRegistration;
-import net.minecraftforge.eventbus.api.EventPriority;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 public class CommonProxy {
 
@@ -28,8 +29,7 @@ public class CommonProxy {
         MRRegistration.REGISTRATE.registerRegistrate();
     }
 
-    public void modifyMaterialInfo(MaterialEvent e) {
-    }
+    public void modifyMaterialInfo(MaterialEvent e) {}
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public void modifyMaterialInfoLowest(MaterialEvent e) {
