@@ -223,7 +223,7 @@ dependencies {
     compileOnly fg.deobf("maven.modrinth:jade:11.12.3+forge")
     // REI
     // Configuration 1.2.2.0
-    runtimeOnly fg.deobf("dev.toma.configuration:configuration-forge-1.20.1:2.2.0")
+    implementation fg.deobf("dev.toma.configuration:configuration-forge-1.20.1:2.2.0")
     // JEI 15.20.0.150
     compileOnly fg.deobf("mezz.jei:jei-1.20.1-common-api:15.20.0.105")
     compileOnly fg.deobf("mezz.jei:jei-1.20.1-forge-api:15.20.0.105")
