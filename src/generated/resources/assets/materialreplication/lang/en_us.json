@@ -12,6 +12,8 @@
   "block.materialreplication.uv_deconstructor": "§3Ultimate Deconstructor §r",
   "block.materialreplication.uxv_deconstructor": "§eEpic Deconstructor IV§r",
   "block.materialreplication.zpm_deconstructor": "§cElite Deconstructor III§r",
+  "item.materialreplication.usb_stick": "USB Stick",
+  "itemGroup.materialreplication.item": "Material Replication",
   "material.materialreplication.charged_matter": "Charged Matter",
   "material.materialreplication.matter_amplifier": "Matter Amplifier",
   "material.materialreplication.neutral_matter": "Neutral Matter",

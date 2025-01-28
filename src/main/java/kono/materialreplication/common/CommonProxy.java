@@ -9,6 +9,7 @@ import com.gregtechceu.gtceu.api.data.chemical.material.event.MaterialEvent;
 
 import kono.materialreplication.MaterialReplicationConfig;
 import kono.materialreplication.data.MaterialReplicationDataGen;
+import kono.materialreplication.registry.MRItems;
 import kono.materialreplication.registry.MRMaterials;
 import kono.materialreplication.registry.MRRegistration;
 
@@ -26,6 +27,7 @@ public class CommonProxy {
 
         MaterialReplicationConfig.init();
         MaterialReplicationDataGen.init();
+        MRItems.init();
         MRRegistration.REGISTRATE.registerRegistrate();
     }
 
