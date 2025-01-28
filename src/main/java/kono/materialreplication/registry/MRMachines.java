@@ -15,10 +15,10 @@ import com.gregtechceu.gtceu.api.registry.registrate.MachineBuilder;
 import com.gregtechceu.gtceu.common.data.GTRecipeModifiers;
 
 import static com.gregtechceu.gtceu.api.GTValues.*;
-import static com.gregtechceu.gtceu.common.data.GTCreativeModeTabs.MACHINE;
 import static com.gregtechceu.gtceu.common.data.machines.GTMachineUtils.*;
 import static com.gregtechceu.gtceu.utils.FormattingUtil.toEnglishName;
 import static kono.materialreplication.MRUtils.mrId;
+import static kono.materialreplication.registry.MRCreativeModeTabs.MATERIALREPLICATION;
 import static kono.materialreplication.registry.MRRegistration.REGISTRATE;
 
 import it.unimi.dsi.fastutil.ints.Int2IntFunction;
@@ -26,7 +26,7 @@ import it.unimi.dsi.fastutil.ints.Int2IntFunction;
 public class MRMachines {
 
     static {
-        REGISTRATE.creativeModeTab(() -> MACHINE);
+        REGISTRATE.creativeModeTab(() -> MATERIALREPLICATION);
     }
 
     public static final MachineDefinition[] DECONSTRUCTOR = registerSimpleMachines("deconstructor",
