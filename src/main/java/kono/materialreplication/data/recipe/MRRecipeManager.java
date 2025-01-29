@@ -8,5 +8,6 @@ public class MRRecipeManager {
 
     public static void init(Consumer<FinishedRecipe> provider) {
         MRMatterRecipes.register(provider);
+        MRMiscRecipes.register(provider);
     }
 }

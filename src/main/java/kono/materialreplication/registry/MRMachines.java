@@ -32,6 +32,9 @@ public class MRMachines {
     public static final MachineDefinition[] DECONSTRUCTOR = registerSimpleMachines("deconstructor",
             MRRecipeTypes.DECONSTRUCTOR_RECIPE, hvCappedTankSizeFunction);
 
+    public static final MachineDefinition[] ANNIHILATOR = registerSimpleMachines("annihilator",
+            MRRecipeTypes.ANNIHILATOR_RECIPE, largeTankSizeFunction);
+
     public static MachineDefinition[] registerSimpleMachines(String name,
                                                              GTRecipeType recipeType,
                                                              Int2IntFunction tankScalingFunction,
