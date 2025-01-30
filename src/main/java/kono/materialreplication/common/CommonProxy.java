@@ -8,10 +8,10 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import com.gregtechceu.gtceu.api.data.chemical.material.event.MaterialEvent;
 
 import kono.materialreplication.MaterialReplicationConfig;
-import kono.materialreplication.data.MaterialReplicationDataGen;
 import kono.materialreplication.common.data.MRItems;
 import kono.materialreplication.common.data.MRMaterials;
 import kono.materialreplication.common.data.MRRegistration;
+import kono.materialreplication.data.MaterialReplicationDataGen;
 
 public class CommonProxy {
 
@@ -30,7 +30,6 @@ public class CommonProxy {
         MRItems.init();
         MRRegistration.REGISTRATE.registerRegistrate();
     }
-
 
     public void modifyMaterialInfo(MaterialEvent e) {}
 
