@@ -8,7 +8,7 @@ import com.gregtechceu.gtceu.common.data.GTSoundEntries;
 
 import com.lowdragmc.lowdraglib.gui.texture.ProgressTexture;
 
-import kono.materialreplication.common.data.machine.customlogic.AnnihilatorLogic;
+import kono.materialreplication.common.data.machine.single.annihilator.AnnihilatorCustomLogic;
 
 public class MRRecipeTypes {
 
@@ -29,7 +29,7 @@ public class MRRecipeTypes {
             .setSlotOverlay(false, true, GuiTextures.FLUID_SLOT)
             .setSlotOverlay(true, false, GuiTextures.LIGHTNING_OVERLAY_1)
             .setProgressBar(GuiTextures.PROGRESS_BAR_RECYCLER, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
-            .addCustomRecipeLogic(new AnnihilatorLogic())
+            .addCustomRecipeLogic(new AnnihilatorCustomLogic())
             .setSound(GTSoundEntries.MACERATOR);
 
     public static void init() {}

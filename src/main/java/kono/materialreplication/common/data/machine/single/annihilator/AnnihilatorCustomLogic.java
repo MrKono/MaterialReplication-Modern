@@ -1,4 +1,4 @@
-package kono.materialreplication.common.data.machine.customlogic;
+package kono.materialreplication.common.data.machine.single.annihilator;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -25,7 +25,7 @@ import static com.gregtechceu.gtceu.api.GTValues.LV;
 import static com.gregtechceu.gtceu.api.GTValues.VA;
 import static kono.materialreplication.MRUtils.mrId;
 
-public class AnnihilatorLogic implements GTRecipeType.ICustomRecipeLogic {
+public class AnnihilatorCustomLogic implements GTRecipeType.ICustomRecipeLogic {
 
     @Override
     public @Nullable GTRecipe createCustomRecipe(IRecipeCapabilityHolder holder) {
