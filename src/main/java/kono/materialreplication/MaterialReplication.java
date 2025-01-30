@@ -23,4 +23,6 @@ public class MaterialReplication {
         modEventBus.addGenericListener(GTRecipeType.class, EventHandler::registerRecipeTypes);
         DistExecutor.unsafeRunForDist(() -> ClientProxy::new, () -> CommonProxy::new);
     }
+
+
 }

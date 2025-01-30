@@ -1,4 +1,4 @@
-package kono.materialreplication.registry;
+package kono.materialreplication.common.data;
 
 import java.util.function.BiFunction;
 
@@ -18,8 +18,8 @@ import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.common.data.machines.GTMachineUtils.*;
 import static com.gregtechceu.gtceu.utils.FormattingUtil.toEnglishName;
 import static kono.materialreplication.MRUtils.mrId;
-import static kono.materialreplication.registry.MRCreativeModeTabs.MATERIALREPLICATION;
-import static kono.materialreplication.registry.MRRegistration.REGISTRATE;
+import static kono.materialreplication.common.data.MRCreativeModeTabs.MATERIALREPLICATION;
+import static kono.materialreplication.common.data.MRRegistration.REGISTRATE;
 
 import it.unimi.dsi.fastutil.ints.Int2IntFunction;
 

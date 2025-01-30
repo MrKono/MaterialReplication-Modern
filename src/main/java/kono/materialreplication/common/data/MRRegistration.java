@@ -1,4 +1,4 @@
-package kono.materialreplication.registry;
+package kono.materialreplication.common.data;
 
 import com.gregtechceu.gtceu.api.registry.registrate.GTRegistrate;
 

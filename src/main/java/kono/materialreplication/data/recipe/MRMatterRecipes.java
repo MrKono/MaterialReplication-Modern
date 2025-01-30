@@ -13,11 +13,11 @@ import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.data.recipe.builder.GTRecipeBuilder;
 
 import kono.materialreplication.MaterialReplicationConfig;
-import kono.materialreplication.registry.MRMaterials;
-import kono.materialreplication.registry.materials.MRMaterialFlags;
+import kono.materialreplication.common.data.MRMaterials;
+import kono.materialreplication.common.data.materials.MRMaterialFlags;
 
 import static kono.materialreplication.MRUtils.*;
-import static kono.materialreplication.registry.MRRecipeTypes.*;
+import static kono.materialreplication.common.data.MRRecipeTypes.DECONSTRUCTOR_RECIPE;
 
 public class MRMatterRecipes {
 

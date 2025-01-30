@@ -9,8 +9,8 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.fluids.FluidStack;
 
-import kono.materialreplication.registry.MRItems;
-import kono.materialreplication.registry.MRRecipeTypes;
+import kono.materialreplication.common.data.MRItems;
+import kono.materialreplication.common.data.MRRecipeTypes;
 
 import static com.gregtechceu.gtceu.api.GTValues.*;
 import static kono.materialreplication.MRUtils.mrId;

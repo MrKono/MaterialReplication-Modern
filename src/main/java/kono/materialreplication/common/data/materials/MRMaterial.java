@@ -1,9 +1,9 @@
-package kono.materialreplication.registry.materials;
+package kono.materialreplication.common.data.materials;
 
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconSet;
 
-import kono.materialreplication.registry.MRMaterials;
+import kono.materialreplication.common.data.MRMaterials;
 
 import static kono.materialreplication.MRUtils.mrId;
 

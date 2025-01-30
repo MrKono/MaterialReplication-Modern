@@ -1,11 +1,11 @@
-package kono.materialreplication.registry;
+package kono.materialreplication.common.data;
 
 import com.gregtechceu.gtceu.api.GTCEuAPI;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 
-import kono.materialreplication.registry.materials.MRMaterial;
-import kono.materialreplication.registry.materials.MRMaterialFlags;
+import kono.materialreplication.common.data.materials.MRMaterial;
+import kono.materialreplication.common.data.materials.MRMaterialFlags;
 
 public class MRMaterials {
 

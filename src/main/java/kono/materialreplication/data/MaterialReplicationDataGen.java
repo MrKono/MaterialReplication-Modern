@@ -1,7 +1,7 @@
 package kono.materialreplication.data;
 
 import kono.materialreplication.data.lang.EnglishLangHandler;
-import kono.materialreplication.registry.MRRegistration;
+import kono.materialreplication.common.data.MRRegistration;
 
 import com.tterrag.registrate.providers.ProviderType;
 

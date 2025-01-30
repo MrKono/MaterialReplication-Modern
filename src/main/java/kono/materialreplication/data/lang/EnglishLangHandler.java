@@ -2,7 +2,7 @@ package kono.materialreplication.data.lang;
 
 import com.gregtechceu.gtceu.data.lang.LangHandler;
 
-import kono.materialreplication.registry.MRMaterials;
+import kono.materialreplication.common.data.MRMaterials;
 
 import com.tterrag.registrate.providers.RegistrateLangProvider;
 

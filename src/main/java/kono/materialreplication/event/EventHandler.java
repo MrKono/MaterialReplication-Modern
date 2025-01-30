@@ -10,9 +10,9 @@ import com.gregtechceu.gtceu.api.machine.MachineDefinition;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 
 import kono.materialreplication.MRUtils;
-import kono.materialreplication.registry.MRMachines;
-import kono.materialreplication.registry.MRMaterials;
-import kono.materialreplication.registry.MRRecipeTypes;
+import kono.materialreplication.common.data.MRMachines;
+import kono.materialreplication.common.data.MRMaterials;
+import kono.materialreplication.common.data.MRRecipeTypes;
 
 @Mod.EventBusSubscriber(modid = MRUtils.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class EventHandler {

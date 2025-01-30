@@ -1,4 +1,4 @@
-package kono.materialreplication.registry.materials;
+package kono.materialreplication.common.data.materials;
 
 import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlag;
 

@@ -1,11 +1,11 @@
-package kono.materialreplication.registry;
+package kono.materialreplication.common.data;
 
 import net.minecraft.world.item.CreativeModeTab;
 
 import com.gregtechceu.gtceu.common.data.GTCreativeModeTabs;
 
 import static kono.materialreplication.MRUtils.mrId;
-import static kono.materialreplication.registry.MRRegistration.REGISTRATE;
+import static kono.materialreplication.common.data.MRRegistration.REGISTRATE;
 
 import com.tterrag.registrate.util.entry.RegistryEntry;
 

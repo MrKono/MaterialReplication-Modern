@@ -1,4 +1,4 @@
-package kono.materialreplication.registry.customlogic;
+package kono.materialreplication.common.data.machine.customlogic;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -18,8 +18,8 @@ import com.gregtechceu.gtceu.api.capability.recipe.ItemRecipeCapability;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 
-import kono.materialreplication.registry.MRItems;
-import kono.materialreplication.registry.MRRecipeTypes;
+import kono.materialreplication.common.data.MRItems;
+import kono.materialreplication.common.data.MRRecipeTypes;
 
 import static com.gregtechceu.gtceu.api.GTValues.LV;
 import static com.gregtechceu.gtceu.api.GTValues.VA;

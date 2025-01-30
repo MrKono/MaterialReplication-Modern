@@ -9,7 +9,7 @@ import com.gregtechceu.gtceu.api.addon.IGTAddon;
 import com.gregtechceu.gtceu.api.registry.registrate.GTRegistrate;
 
 import kono.materialreplication.data.recipe.MRRecipeManager;
-import kono.materialreplication.registry.MRRegistration;
+import kono.materialreplication.common.data.MRRegistration;
 
 @GTAddon
 public class MaterialReplicationGTAddon implements IGTAddon {

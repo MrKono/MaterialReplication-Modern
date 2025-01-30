@@ -1,4 +1,4 @@
-package kono.materialreplication.registry;
+package kono.materialreplication.common.data;
 
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.gui.GuiTextures;
@@ -8,7 +8,7 @@ import com.gregtechceu.gtceu.common.data.GTSoundEntries;
 
 import com.lowdragmc.lowdraglib.gui.texture.ProgressTexture;
 
-import kono.materialreplication.registry.customlogic.AnnihilatorLogic;
+import kono.materialreplication.common.data.machine.customlogic.AnnihilatorLogic;
 
 public class MRRecipeTypes {
 

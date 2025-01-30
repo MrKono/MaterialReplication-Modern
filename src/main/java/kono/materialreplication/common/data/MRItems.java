@@ -1,11 +1,11 @@
-package kono.materialreplication.registry;
+package kono.materialreplication.common.data;
 
 import net.minecraft.world.item.Item;
 
 import com.gregtechceu.gtceu.api.item.ComponentItem;
 
-import static kono.materialreplication.registry.MRCreativeModeTabs.MATERIALREPLICATION;
-import static kono.materialreplication.registry.MRRegistration.REGISTRATE;
+import static kono.materialreplication.common.data.MRCreativeModeTabs.MATERIALREPLICATION;
+import static kono.materialreplication.common.data.MRRegistration.REGISTRATE;
 
 import com.tterrag.registrate.util.entry.ItemEntry;
 
