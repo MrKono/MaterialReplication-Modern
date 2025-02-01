@@ -18,7 +18,7 @@ This mod is a very simple GTCEu add-on that adds a material replication system t
 You can include this mod in your modpack!
 
 ### Corresponding Version Information
-See [Here]().
+See [Here](https://github.com/MrKono/MaterialReplication-Modern/blob/main/CorrespondingVersion.md).
 
 ## Credits
 I modified some textures from [GTCE unofficial](https://github.com/GregTechCEu/GregTech) under LGPL-3.0 License
