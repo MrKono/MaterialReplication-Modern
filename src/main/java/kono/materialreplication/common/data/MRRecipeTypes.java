@@ -34,7 +34,7 @@ public class MRRecipeTypes {
 
     public static final GTRecipeType REPLICATOR_RECIPE = GTRecipeTypes
             .register("replicator", GTRecipeTypes.ELECTRIC)
-            .setMaxIOSize(2, 1, 3, 1).setEUIO(IO.IN)
+            .setMaxIOSize(2, 1, 2, 1).setEUIO(IO.IN)
             .setSlotOverlay(false, false, GuiTextures.DATA_ORB_OVERLAY)
             .setSlotOverlay(false, true, false, GuiTextures.ATOMIC_OVERLAY_1)
             .setSlotOverlay(false, true, true, GuiTextures.ATOMIC_OVERLAY_2)
