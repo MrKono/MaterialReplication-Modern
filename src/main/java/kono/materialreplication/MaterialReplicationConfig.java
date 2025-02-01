@@ -38,6 +38,21 @@ public class MaterialReplicationConfig {
         @Configurable
         @Configurable.Comment({ "If true, only Elements can be deconstructed.", "Default: false" })
         public boolean DeconstructOnlyElements = false;
+
+        @Configurable
+        @Configurable.Comment({ "Material Blacklist for Deconstruction",
+                "This setting is valid only for materials with chemical formulas",
+                "Default: granite, andesite, diorite, clay, brick, obsidian, flint, ice, charcoal, gunpowder, sugar, granite_black, granite_red, marble, basalt, quicklime, redrock, ash, concrete, dark_ash, water, distilled_water, steam" })
+        public String[] materialDeconstructionBlacklist = new String[] {
+                "granite", "andesite", "diorite", "clay", "brick", "obsidian", "flint", "ice", "charcoal", "gunpowder",
+                "sugar",
+                "granite_black", "granite_red", "marble", "basalt", "quicklime", "redrock", "ash", "concrete",
+                "dark_ash", "water", "distilled_water", "steam"
+        };
+
+        @Configurable
+        @Configurable.Comment({ "Add material to Deconstruct whitelist which does not have chemical formula" })
+        public String[] materialDeconstructionWhitelist = new String[] {};
     }
 
     public static class ReplicateConfigs {
@@ -66,6 +81,16 @@ public class MaterialReplicationConfig {
         @Configurable
         @Configurable.Comment({ "If true, only Elements can be replicated.", "Default: false" })
         public boolean ReplicateOnlyElements = false;
+
+        @Configurable
+        @Configurable.Comment({ "Material Blacklist for Replication",
+                "This setting is valid only for materials with chemical formulas",
+                "Default: " })
+        public String[] materialReplicationBlacklist = new String[] {};
+
+        @Configurable
+        @Configurable.Comment({ "Add material to Replicate whitelist which does not have chemical formula" })
+        public String[] materialReplicationWhitelist = new String[] {};
     }
 
     public static class RecipeConfigs {

@@ -6,6 +6,7 @@ import net.minecraftforge.fml.common.Mod;
 
 import com.gregtechceu.gtceu.api.GTCEuAPI;
 import com.gregtechceu.gtceu.api.data.chemical.material.event.MaterialEvent;
+import com.gregtechceu.gtceu.api.data.chemical.material.event.PostMaterialEvent;
 import com.gregtechceu.gtceu.api.machine.MachineDefinition;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 
@@ -28,5 +29,10 @@ public class EventHandler {
     @SubscribeEvent
     public static void registerMaterials(MaterialEvent event) {
         MRMaterials.init();
+    }
+
+    @SubscribeEvent
+    public static void registerMaterialPost(PostMaterialEvent event) {
+        MRMaterials.post();
     }
 }

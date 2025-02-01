@@ -19,6 +19,7 @@ import com.gregtechceu.gtceu.data.recipe.builder.GTRecipeBuilder;
 import kono.materialreplication.MaterialReplicationConfig;
 import kono.materialreplication.common.data.MRItems;
 import kono.materialreplication.common.data.MRMaterials;
+import kono.materialreplication.common.data.materials.MRMaterialFlags;
 
 import static com.gregtechceu.gtceu.api.GTValues.LV;
 import static com.gregtechceu.gtceu.api.GTValues.VA;
@@ -53,14 +54,22 @@ public class MRMatterRecipes {
 
     public static void matterRecipe(Consumer<FinishedRecipe> provider) {
         for (Material material : GTCEuAPI.materialManager.getRegisteredMaterials()) {
-            if (material.getUnlocalizedName().isEmpty()) break;
-            // if (material.hasFlag(MRMaterialFlags.DISABLE_DECONSTRUCTION)) break;
-            if (!MaterialReplicationConfig.INSTANCE.deconstruct.DeconstructOnlyElements) {
-                registerDeconstructRecipe(material, provider);
-            } else if (material.isElement()) {
-                registerDeconstructRecipe(material, provider);
+            // Deconstruction
+            if (!material.hasFlag(MRMaterialFlags.DISABLE_DECONSTRUCTION)) {
+                if (!MaterialReplicationConfig.INSTANCE.deconstruct.DeconstructOnlyElements) {
+                    registerDeconstructRecipe(material, provider);
+                } else if (material.isElement()) {
+                    registerDeconstructRecipe(material, provider);
+                }
             }
-            registerReplicateRecipe(material, provider);
+            // Replication
+            if (!material.hasFlag(MRMaterialFlags.DISABLE_REPLICATION)) {
+                if (!MaterialReplicationConfig.INSTANCE.replicate.ReplicateOnlyElements) {
+                    registerReplicateRecipe(material, provider);
+                } else if (material.isElement()) {
+                    registerReplicateRecipe(material, provider);
+                }
+            }
         }
     }
 
