@@ -40,7 +40,33 @@ public class MaterialReplicationConfig {
         public boolean DeconstructOnlyElements = false;
     }
 
-    public static class ReplicateConfigs {}
+    public static class ReplicateConfigs {
+
+        @Configurable
+        @Configurable.Comment({ "Replication Base time in tick (int).", "Default : 1200 tick (60 Sec.)",
+                "Duration : BaseTime * material's Average mass" })
+        @Configurable.Range(min = 1)
+        public int ReplicationBaseTime = 1200;
+
+        @Configurable
+        @Configurable.Comment({ "Replication Base Voltage in int.", "Default : 30 (LV)" })
+        @Configurable.Range(min = 1)
+        public int ReplicationVoltage = 30;
+
+        @Configurable
+        @Configurable.Comment({ "Material Scan time in tick (int).", "Default : 1200 tick (60 Sec.)" })
+        @Configurable.Range(min = 1)
+        public int ScanTime = 1200;
+
+        @Configurable
+        @Configurable.Comment({ "Material Scan Voltage in int.", "Default : 30 (LV)" })
+        @Configurable.Range(min = 1)
+        public int ScanVoltage = 30;
+
+        @Configurable
+        @Configurable.Comment({ "If true, only Elements can be replicated.", "Default: false" })
+        public boolean ReplicateOnlyElements = false;
+    }
 
     public static class RecipeConfigs {
 

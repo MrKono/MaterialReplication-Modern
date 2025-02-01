@@ -20,6 +20,8 @@ import kono.materialreplication.MaterialReplicationConfig;
 import kono.materialreplication.common.data.MRItems;
 import kono.materialreplication.common.data.MRMaterials;
 
+import static com.gregtechceu.gtceu.api.GTValues.LV;
+import static com.gregtechceu.gtceu.api.GTValues.VA;
 import static kono.materialreplication.MRUtils.*;
 import static kono.materialreplication.common.data.MRRecipeTypes.DECONSTRUCTOR_RECIPE;
 import static kono.materialreplication.common.data.MRRecipeTypes.REPLICATOR_RECIPE;
@@ -29,10 +31,20 @@ public class MRMatterRecipes {
     public static String REPLICATE_NBT_TAG = "replicate_research";
     public static String REPLICATE_ID_NBT_TAG = "material_id";
 
-    public static int deconstructionBaseTime = MaterialReplicationConfig.INSTANCE.deconstruct.DeconstructionBaseTime;
-    public static long deconstructionVoltage = MaterialReplicationConfig.INSTANCE.deconstruct.DeconstructionVoltage;
-    public static int replicationBaseTime = 1200;
-    public static long replicationVoltage = 30;
+    public static int deconstructionBaseTime = MaterialReplicationConfig.INSTANCE.deconstruct.DeconstructionBaseTime >
+            1 ?
+                    MaterialReplicationConfig.INSTANCE.deconstruct.DeconstructionBaseTime : 600;
+    public static int replicationBaseTime = MaterialReplicationConfig.INSTANCE.replicate.ReplicationBaseTime > 1 ?
+            MaterialReplicationConfig.INSTANCE.replicate.ReplicationBaseTime : 1200;
+    public static int scanTIme = MaterialReplicationConfig.INSTANCE.replicate.ScanTime > 1 ?
+            MaterialReplicationConfig.INSTANCE.replicate.ScanTime : 1200;
+    public static long deconstructionVoltage = MaterialReplicationConfig.INSTANCE.deconstruct.DeconstructionVoltage >
+            1 ?
+                    MaterialReplicationConfig.INSTANCE.deconstruct.DeconstructionVoltage : VA[LV];
+    public static long replicationVoltage = MaterialReplicationConfig.INSTANCE.replicate.ReplicationVoltage > 1 ?
+            MaterialReplicationConfig.INSTANCE.replicate.ReplicationVoltage : VA[LV];
+    public static long scanVoltage = MaterialReplicationConfig.INSTANCE.replicate.ScanVoltage > 1 ?
+            MaterialReplicationConfig.INSTANCE.replicate.ScanVoltage : VA[LV];
 
     public static void register(Consumer<FinishedRecipe> provider) {
         matterRecipe(provider);
@@ -111,15 +123,14 @@ public class MRMatterRecipes {
         usb.setHoverName(Component.translatable("materialreplication.replicator.usb.data",
                 Component.translatable(nameUn)));
 
+        // Replication
         GTRecipeBuilder replicateBuilder = REPLICATOR_RECIPE.recipeBuilder(mrId(name))
                 .notConsumable(usb)
                 .duration(getMass(material) * replicationBaseTime).EUt(replicationVoltage);
         if (material.hasProperty(PropertyKey.DUST)) {
-            replicateBuilder// .notConsumable(TagPrefix.dust, material)
-                    .outputItems(TagPrefix.dust, material);
+            replicateBuilder.outputItems(TagPrefix.dust, material);
         } else if (material.hasProperty(PropertyKey.FLUID)) {
-            replicateBuilder// .notConsumableFluid(material.getFluid(1000))
-                    .outputFluids(material.getFluid(1000));
+            replicateBuilder.outputFluids(material.getFluid(1000));
         }
         if (getProtons(material) > 1) {
             replicateBuilder.inputFluids(MRMaterials.ChargedMatter.getFluid(getProtons(material)));
@@ -129,10 +140,9 @@ public class MRMatterRecipes {
         }
         replicateBuilder.save(provider);
 
+        // Scan
         GTRecipeBuilder scanBuilder = GTRecipeTypes.SCANNER_RECIPES.recipeBuilder(mrId(name))
-                .inputItems(MRItems.USB_STICK)
-                .duration(getMass(material) * replicationBaseTime)
-                .EUt(replicationVoltage);
+                .inputItems(MRItems.USB_STICK).duration(scanTIme).EUt(scanVoltage);
         if (material.hasProperty(PropertyKey.DUST)) {
             scanBuilder.inputItems(TagPrefix.dust, material);
         } else if (material.hasProperty(PropertyKey.FLUID)) {
