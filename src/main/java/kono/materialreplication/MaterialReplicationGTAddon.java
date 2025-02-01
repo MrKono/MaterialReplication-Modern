@@ -3,6 +3,7 @@ package kono.materialreplication;
 import java.util.function.Consumer;
 
 import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.resources.ResourceLocation;
 
 import com.gregtechceu.gtceu.api.addon.GTAddon;
 import com.gregtechceu.gtceu.api.addon.IGTAddon;
@@ -32,6 +33,11 @@ public class MaterialReplicationGTAddon implements IGTAddon {
 
     @Override
     public void addRecipes(Consumer<FinishedRecipe> provider) {
-        MRRecipeManager.init(provider);
+        MRRecipeManager.addRecipes(provider);
+    }
+
+    @Override
+    public void removeRecipes(Consumer<ResourceLocation> consumer) {
+        MRRecipeManager.removeRecipes(consumer);
     }
 }

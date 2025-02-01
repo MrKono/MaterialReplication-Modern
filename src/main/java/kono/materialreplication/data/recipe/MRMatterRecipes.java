@@ -35,6 +35,11 @@ public class MRMatterRecipes {
     public static long replicationVoltage = 30;
 
     public static void register(Consumer<FinishedRecipe> provider) {
+        matterRecipe(provider);
+        amplifierRecipe(provider);
+    }
+
+    public static void matterRecipe(Consumer<FinishedRecipe> provider) {
         for (Material material : GTCEuAPI.materialManager.getRegisteredMaterials()) {
             if (material.getUnlocalizedName().isEmpty()) break;
             // if (material.hasFlag(MRMaterialFlags.DISABLE_DECONSTRUCTION)) break;
@@ -47,6 +52,41 @@ public class MRMatterRecipes {
         }
     }
 
+    public static void amplifierRecipe(Consumer<FinishedRecipe> provider) {
+        GTRecipeTypes.CENTRIFUGE_RECIPES.recipeBuilder(mrId("scrap"))
+                .inputItems(MRItems.SCRAP)
+                .outputFluids(MRMaterials.MatterAmplifier.getFluid(1))
+                .duration(1200).EUt(30).save(provider);
+        GTRecipeTypes.CENTRIFUGE_RECIPES.recipeBuilder(mrId("scrap_box"))
+                .inputItems(MRItems.SCRAP_BOX)
+                .outputFluids(MRMaterials.MatterAmplifier.getFluid(9))
+                .chancedFluidOutput(MRMaterials.MatterAmplifier.getFluid(1), "3/4", 0)
+                .chancedFluidOutput(MRMaterials.MatterAmplifier.getFluid(1), "1/10", 0)
+                .chancedFluidOutput(MRMaterials.MatterAmplifier.getFluid(1), "1/100", 0)
+                .chancedFluidOutput(MRMaterials.MatterAmplifier.getFluid(1), "1/100", 0)
+                .duration(12000).EUt(30).save(provider);
+
+        // Primal -> Charged & Neutral
+        GTRecipeTypes.CENTRIFUGE_RECIPES.recipeBuilder(mrId("primal_centrifuge"))
+                .inputFluids(MRMaterials.PrimalMatter.getFluid(1))
+                .outputFluids(MRMaterials.ChargedMatter.getFluid(1))
+                .outputFluids(MRMaterials.NeutralMatter.getFluid(1))
+                .duration(12000).EUt(16).save(provider);
+
+        // MatterAmplifier
+        GTRecipeTypes.CHEMICAL_RECIPES.recipeBuilder(mrId("charged_matter_amplified"))
+                .inputFluids(MRMaterials.MatterAmplifier.getFluid(500))
+                .inputFluids(MRMaterials.ChargedMatter.getFluid(500))
+                .outputFluids(MRMaterials.ChargedMatter.getFluid(1000))
+                .duration(replicationBaseTime).EUt(replicationVoltage).save(provider);
+
+        GTRecipeTypes.CHEMICAL_RECIPES.recipeBuilder(mrId("neutral_matter_amplified"))
+                .inputFluids(MRMaterials.MatterAmplifier.getFluid(500))
+                .inputFluids(MRMaterials.NeutralMatter.getFluid(500))
+                .outputFluids(MRMaterials.NeutralMatter.getFluid(1000))
+                .duration(replicationBaseTime).EUt(replicationVoltage).save(provider);
+    }
+
     public static void registerDeconstructRecipe(@NotNull Material material, Consumer<FinishedRecipe> provider) {
         GTRecipeBuilder builder = DECONSTRUCTOR_RECIPE.recipeBuilder(mrId(material.getName()));
         if (material.hasProperty(PropertyKey.DUST)) {
@@ -56,7 +96,7 @@ public class MRMatterRecipes {
         }
         builder.outputFluids(MRMaterials.ChargedMatter.getFluid(getProtons(material)))
                 .outputFluids(MRMaterials.NeutralMatter.getFluid(getNeutrons(material)))
-                .chancedOutput(TagPrefix.dustTiny, MRMaterials.PrimalMatter, 1, 1, 0)
+                .chancedOutput(TagPrefix.dustTiny, MRMaterials.PrimalMatter, "1/100", 0)
                 .duration(getMass(material) * deconstructionBaseTime).EUt(deconstructionVoltage).save(provider);
     }
 
