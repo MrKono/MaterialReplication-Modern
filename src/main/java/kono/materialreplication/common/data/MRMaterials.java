@@ -31,9 +31,9 @@ public class MRMaterials {
     }
 
     public static void materialFlagAdditionInit() {
-        for (String str : MaterialReplicationConfig.INSTANCE.deconstruct.materialDeconstructionBlacklist) {
-            if (!str.isEmpty()) {
-                Material mat = GTCEuAPI.materialManager.getMaterial(str);
+        for (String str1 : MaterialReplicationConfig.INSTANCE.deconstruct.materialDeconstructionBlacklist) {
+            if (!str1.isEmpty()) {
+                Material mat = GTCEuAPI.materialManager.getMaterial(str1);
                 if (mat == null) continue;
                 mat.addFlags(MRMaterialFlags.DISABLE_DECONSTRUCTION);
             }
@@ -47,20 +47,5 @@ public class MRMaterials {
         }
     }
 
-    public static void materialFlagAdditionPost() {
-        for (Material material : GTCEuAPI.materialManager.getRegisteredMaterials()) {
-            if (material.getChemicalFormula().isEmpty()) {
-                for (String dec : MaterialReplicationConfig.INSTANCE.deconstruct.materialDeconstructionWhitelist) {
-                    if (material != GTCEuAPI.materialManager.getMaterial(dec)) {
-                        material.addFlags(MRMaterialFlags.DISABLE_DECONSTRUCTION);
-                    }
-                }
-                for (String rep : MaterialReplicationConfig.INSTANCE.replicate.materialReplicationWhitelist) {
-                    if (material != GTCEuAPI.materialManager.getMaterial(rep)) {
-                        material.addFlags(MRMaterialFlags.DISABLE_REPLICATION);
-                    }
-                }
-            }
-        }
-    }
+    public static void materialFlagAdditionPost() {}
 }

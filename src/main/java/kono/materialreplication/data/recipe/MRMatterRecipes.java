@@ -49,25 +49,49 @@ public class MRMatterRecipes {
 
     public static void register(Consumer<FinishedRecipe> provider) {
         matterRecipe(provider);
+        matterRecipeNoChemicalFormula(provider);
         amplifierRecipe(provider);
     }
 
     public static void matterRecipe(Consumer<FinishedRecipe> provider) {
         for (Material material : GTCEuAPI.materialManager.getRegisteredMaterials()) {
-            // Deconstruction
-            if (!material.hasFlag(MRMaterialFlags.DISABLE_DECONSTRUCTION)) {
-                if (!MaterialReplicationConfig.INSTANCE.deconstruct.DeconstructOnlyElements) {
-                    registerDeconstructRecipe(material, provider);
-                } else if (material.isElement()) {
-                    registerDeconstructRecipe(material, provider);
+            if (!material.getChemicalFormula().isEmpty()) {
+                // Deconstruction
+                if (!material.hasFlag(MRMaterialFlags.DISABLE_DECONSTRUCTION)) {
+                    if (!MaterialReplicationConfig.INSTANCE.deconstruct.DeconstructOnlyElements) {
+                        registerDeconstructRecipe(material, provider);
+                    } else if (material.isElement()) {
+                        registerDeconstructRecipe(material, provider);
+                    }
+                }
+                // Replication
+                if (!material.hasFlag(MRMaterialFlags.DISABLE_REPLICATION)) {
+                    if (!MaterialReplicationConfig.INSTANCE.replicate.ReplicateOnlyElements) {
+                        registerReplicateRecipe(material, provider);
+                    } else if (material.isElement()) {
+                        registerReplicateRecipe(material, provider);
+                    }
                 }
             }
-            // Replication
-            if (!material.hasFlag(MRMaterialFlags.DISABLE_REPLICATION)) {
-                if (!MaterialReplicationConfig.INSTANCE.replicate.ReplicateOnlyElements) {
-                    registerReplicateRecipe(material, provider);
-                } else if (material.isElement()) {
-                    registerReplicateRecipe(material, provider);
+        }
+    }
+
+    public static void matterRecipeNoChemicalFormula(Consumer<FinishedRecipe> provider) {
+        // Deconstructor
+        for (String str1 : MaterialReplicationConfig.INSTANCE.deconstruct.materialDeconstructionWhitelist) {
+            if (!str1.isEmpty()) {
+                Material mat1 = GTCEuAPI.materialManager.getMaterial(str1);
+                if (mat1 != null) {
+                    registerDeconstructRecipe(mat1, provider);
+                }
+            }
+        }
+        // Replicator
+        for (String str2 : MaterialReplicationConfig.INSTANCE.replicate.materialReplicationWhitelist) {
+            if (!str2.isEmpty()) {
+                Material mat2 = GTCEuAPI.materialManager.getMaterial(str2);
+                if (mat2 != null) {
+                    registerReplicateRecipe(mat2, provider);
                 }
             }
         }
