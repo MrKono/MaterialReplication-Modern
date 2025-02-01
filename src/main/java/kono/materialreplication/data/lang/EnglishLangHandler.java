@@ -21,8 +21,8 @@ public class EnglishLangHandler extends LangHandler {
         replace(provider, "materialreplication.replicator.usb.data", "§r§3Replicate Data: §r§a%s");
 
         // Recipe Name
-        replace(provider, "gtceu.deconstructor", "Deconstruction");
+        replace(provider, "gtceu.deconstructor", "Material Deconstruction");
         replace(provider, "gtceu.annihilator", "Annihilation");
-        replace(provider, "gtceu.replicator", "Replication");
+        replace(provider, "gtceu.replicator", "Material Replication");
     }
 }

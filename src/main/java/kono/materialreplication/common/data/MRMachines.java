@@ -29,13 +29,13 @@ public class MRMachines {
         REGISTRATE.creativeModeTab(() -> MATERIALREPLICATION);
     }
 
-    public static final MachineDefinition[] DECONSTRUCTOR = registerSimpleMachines("deconstructor",
+    public static final MachineDefinition[] DECONSTRUCTOR = registerSimpleMachines("material_deconstructor",
             MRRecipeTypes.DECONSTRUCTOR_RECIPE, hvCappedTankSizeFunction);
 
     public static final MachineDefinition[] ANNIHILATOR = registerSimpleMachines("annihilator",
             MRRecipeTypes.ANNIHILATOR_RECIPE, largeTankSizeFunction);
 
-    public static final MachineDefinition[] REPLICATOR = registerSimpleMachines("replicator",
+    public static final MachineDefinition[] REPLICATOR = registerSimpleMachines("material_replicator",
             MRRecipeTypes.REPLICATOR_RECIPE, hvCappedTankSizeFunction);
 
     public static MachineDefinition[] registerSimpleMachines(String name,
