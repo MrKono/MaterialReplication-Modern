@@ -32,7 +32,7 @@ public class MRMiscRecipes {
     }
 
     /**
-     * Fake recipe for annihilator
+     * Fake RecipeConfig for annihilator
      **/
     public static void scrapRecipe(Consumer<FinishedRecipe> provider) {
         ItemStack itemStack = new ItemStack(Items.BARRIER);
@@ -85,7 +85,7 @@ public class MRMiscRecipes {
     }
 
     /**
-     * Remove recipe
+     * Remove RecipeConfig
      */
     public static void removeRecipe(Consumer<ResourceLocation> registry) {
         // Crafting

@@ -31,14 +31,14 @@ public class MRMaterials {
     }
 
     public static void materialFlagAdditionInit() {
-        for (String str1 : MaterialReplicationConfig.INSTANCE.deconstruct.materialDeconstructionBlacklist) {
+        for (String str1 : MaterialReplicationConfig.INSTANCE.DeconstructionConfig.MaterialsForDeconstructionBlacklist) {
             if (!str1.isEmpty()) {
                 Material mat = GTCEuAPI.materialManager.getMaterial(str1);
                 if (mat == null) continue;
                 mat.addFlags(MRMaterialFlags.DISABLE_DECONSTRUCTION);
             }
         }
-        for (String str : MaterialReplicationConfig.INSTANCE.replicate.materialReplicationBlacklist) {
+        for (String str : MaterialReplicationConfig.INSTANCE.ReplicationConfig.MaterialsForReplicationBlacklist) {
             if (!str.isEmpty()) {
                 Material mat = GTCEuAPI.materialManager.getMaterial(str);
                 if (mat == null) continue;

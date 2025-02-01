@@ -16,11 +16,11 @@ public class MaterialReplicationConfig {
     }
 
     @Configurable
-    public RecipeConfigs recipe = new RecipeConfigs();
+    public RecipeConfigs RecipeConfig = new RecipeConfigs();
     @Configurable
-    public DeconstructConfigs deconstruct = new DeconstructConfigs();
+    public DeconstructConfigs DeconstructionConfig = new DeconstructConfigs();
     @Configurable
-    public ReplicateConfigs replicate = new ReplicateConfigs();
+    public ReplicateConfigs ReplicationConfig = new ReplicateConfigs();
 
     public static class DeconstructConfigs {
 
@@ -43,7 +43,7 @@ public class MaterialReplicationConfig {
         @Configurable.Comment({ "Material Blacklist for Deconstruction",
                 "This setting is valid only for materials with chemical formulas",
                 "Default: granite, andesite, diorite, clay, brick, obsidian, flint, ice, charcoal, gunpowder, sugar, granite_black, granite_red, marble, basalt, quicklime, redrock, ash, concrete, dark_ash, water, distilled_water, steam" })
-        public String[] materialDeconstructionBlacklist = new String[] {
+        public String[] MaterialsForDeconstructionBlacklist = new String[] {
                 "granite", "andesite", "diorite", "clay", "brick", "obsidian", "flint", "ice", "charcoal", "gunpowder",
                 "sugar",
                 "granite_black", "granite_red", "marble", "basalt", "quicklime", "redrock", "ash", "concrete",
@@ -52,7 +52,7 @@ public class MaterialReplicationConfig {
 
         @Configurable
         @Configurable.Comment({ "Add material to Deconstruct whitelist which does not have chemical formula" })
-        public String[] materialDeconstructionWhitelist = new String[] {};
+        public String[] MaterialsForDeconstructionWhitelist = new String[] {};
     }
 
     public static class ReplicateConfigs {
@@ -86,17 +86,17 @@ public class MaterialReplicationConfig {
         @Configurable.Comment({ "Material Blacklist for Replication",
                 "This setting is valid only for materials with chemical formulas",
                 "Default: " })
-        public String[] materialReplicationBlacklist = new String[] {};
+        public String[] MaterialsForReplicationBlacklist = new String[] {};
 
         @Configurable
         @Configurable.Comment({ "Add material to Replicate whitelist which does not have chemical formula" })
-        public String[] materialReplicationWhitelist = new String[] {};
+        public String[] MaterialsForReplicationWhitelist = new String[] {};
     }
 
     public static class RecipeConfigs {
 
         @Configurable
-        @Configurable.Comment({ "Whether to add the UUMatter recipe.", "Default : false" })
-        public boolean addMatterRecipe = false;
+        @Configurable.Comment({ "Whether to add the UUMatter RecipeConfig.", "Default : false" })
+        public boolean AddMatterRecipe = false;
     }
 }

@@ -32,20 +32,20 @@ public class MRMatterRecipes {
     public static String REPLICATE_NBT_TAG = "replicate_research";
     public static String REPLICATE_ID_NBT_TAG = "material_id";
 
-    public static int deconstructionBaseTime = MaterialReplicationConfig.INSTANCE.deconstruct.DeconstructionBaseTime >
+    public static int deconstructionBaseTime = MaterialReplicationConfig.INSTANCE.DeconstructionConfig.DeconstructionBaseTime >
             1 ?
-                    MaterialReplicationConfig.INSTANCE.deconstruct.DeconstructionBaseTime : 600;
-    public static int replicationBaseTime = MaterialReplicationConfig.INSTANCE.replicate.ReplicationBaseTime > 1 ?
-            MaterialReplicationConfig.INSTANCE.replicate.ReplicationBaseTime : 1200;
-    public static int scanTIme = MaterialReplicationConfig.INSTANCE.replicate.ScanTime > 1 ?
-            MaterialReplicationConfig.INSTANCE.replicate.ScanTime : 1200;
-    public static long deconstructionVoltage = MaterialReplicationConfig.INSTANCE.deconstruct.DeconstructionVoltage >
+                    MaterialReplicationConfig.INSTANCE.DeconstructionConfig.DeconstructionBaseTime : 600;
+    public static int replicationBaseTime = MaterialReplicationConfig.INSTANCE.ReplicationConfig.ReplicationBaseTime > 1 ?
+            MaterialReplicationConfig.INSTANCE.ReplicationConfig.ReplicationBaseTime : 1200;
+    public static int scanTIme = MaterialReplicationConfig.INSTANCE.ReplicationConfig.ScanTime > 1 ?
+            MaterialReplicationConfig.INSTANCE.ReplicationConfig.ScanTime : 1200;
+    public static long deconstructionVoltage = MaterialReplicationConfig.INSTANCE.DeconstructionConfig.DeconstructionVoltage >
             1 ?
-                    MaterialReplicationConfig.INSTANCE.deconstruct.DeconstructionVoltage : VA[LV];
-    public static long replicationVoltage = MaterialReplicationConfig.INSTANCE.replicate.ReplicationVoltage > 1 ?
-            MaterialReplicationConfig.INSTANCE.replicate.ReplicationVoltage : VA[LV];
-    public static long scanVoltage = MaterialReplicationConfig.INSTANCE.replicate.ScanVoltage > 1 ?
-            MaterialReplicationConfig.INSTANCE.replicate.ScanVoltage : VA[LV];
+                    MaterialReplicationConfig.INSTANCE.DeconstructionConfig.DeconstructionVoltage : VA[LV];
+    public static long replicationVoltage = MaterialReplicationConfig.INSTANCE.ReplicationConfig.ReplicationVoltage > 1 ?
+            MaterialReplicationConfig.INSTANCE.ReplicationConfig.ReplicationVoltage : VA[LV];
+    public static long scanVoltage = MaterialReplicationConfig.INSTANCE.ReplicationConfig.ScanVoltage > 1 ?
+            MaterialReplicationConfig.INSTANCE.ReplicationConfig.ScanVoltage : VA[LV];
 
     public static void register(Consumer<FinishedRecipe> provider) {
         matterRecipe(provider);
@@ -58,7 +58,7 @@ public class MRMatterRecipes {
             if (!material.getChemicalFormula().isEmpty()) {
                 // Deconstruction
                 if (!material.hasFlag(MRMaterialFlags.DISABLE_DECONSTRUCTION)) {
-                    if (!MaterialReplicationConfig.INSTANCE.deconstruct.DeconstructOnlyElements) {
+                    if (!MaterialReplicationConfig.INSTANCE.DeconstructionConfig.DeconstructOnlyElements) {
                         registerDeconstructRecipe(material, provider);
                     } else if (material.isElement()) {
                         registerDeconstructRecipe(material, provider);
@@ -66,7 +66,7 @@ public class MRMatterRecipes {
                 }
                 // Replication
                 if (!material.hasFlag(MRMaterialFlags.DISABLE_REPLICATION)) {
-                    if (!MaterialReplicationConfig.INSTANCE.replicate.ReplicateOnlyElements) {
+                    if (!MaterialReplicationConfig.INSTANCE.ReplicationConfig.ReplicateOnlyElements) {
                         registerReplicateRecipe(material, provider);
                     } else if (material.isElement()) {
                         registerReplicateRecipe(material, provider);
@@ -78,7 +78,7 @@ public class MRMatterRecipes {
 
     public static void matterRecipeNoChemicalFormula(Consumer<FinishedRecipe> provider) {
         // Deconstructor
-        for (String str1 : MaterialReplicationConfig.INSTANCE.deconstruct.materialDeconstructionWhitelist) {
+        for (String str1 : MaterialReplicationConfig.INSTANCE.DeconstructionConfig.MaterialsForDeconstructionWhitelist) {
             if (!str1.isEmpty()) {
                 Material mat1 = GTCEuAPI.materialManager.getMaterial(str1);
                 if (mat1 != null) {
@@ -87,7 +87,7 @@ public class MRMatterRecipes {
             }
         }
         // Replicator
-        for (String str2 : MaterialReplicationConfig.INSTANCE.replicate.materialReplicationWhitelist) {
+        for (String str2 : MaterialReplicationConfig.INSTANCE.ReplicationConfig.MaterialsForReplicationWhitelist) {
             if (!str2.isEmpty()) {
                 Material mat2 = GTCEuAPI.materialManager.getMaterial(str2);
                 if (mat2 != null) {
