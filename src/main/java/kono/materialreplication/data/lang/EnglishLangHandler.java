@@ -1,20 +1,21 @@
 package kono.materialreplication.data.lang;
 
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+
 import com.gregtechceu.gtceu.data.lang.LangHandler;
 
 import dev.toma.configuration.Configuration;
 import dev.toma.configuration.config.format.ConfigFormats;
 import dev.toma.configuration.config.value.ConfigValue;
 import dev.toma.configuration.config.value.ObjectValue;
+
 import kono.materialreplication.MRUtils;
 import kono.materialreplication.MaterialReplicationConfig;
 import kono.materialreplication.common.data.MRMaterials;
 
 import com.tterrag.registrate.providers.RegistrateLangProvider;
-
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
 
 public class EnglishLangHandler extends LangHandler {
 

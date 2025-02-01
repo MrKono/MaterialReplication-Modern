@@ -35,15 +35,17 @@ public class MRMatterRecipes {
     public static int deconstructionBaseTime = MaterialReplicationConfig.INSTANCE.DeconstructionConfig.DeconstructionBaseTime >
             1 ?
                     MaterialReplicationConfig.INSTANCE.DeconstructionConfig.DeconstructionBaseTime : 600;
-    public static int replicationBaseTime = MaterialReplicationConfig.INSTANCE.ReplicationConfig.ReplicationBaseTime > 1 ?
-            MaterialReplicationConfig.INSTANCE.ReplicationConfig.ReplicationBaseTime : 1200;
+    public static int replicationBaseTime = MaterialReplicationConfig.INSTANCE.ReplicationConfig.ReplicationBaseTime >
+            1 ?
+                    MaterialReplicationConfig.INSTANCE.ReplicationConfig.ReplicationBaseTime : 1200;
     public static int scanTIme = MaterialReplicationConfig.INSTANCE.ReplicationConfig.ScanTime > 1 ?
             MaterialReplicationConfig.INSTANCE.ReplicationConfig.ScanTime : 1200;
     public static long deconstructionVoltage = MaterialReplicationConfig.INSTANCE.DeconstructionConfig.DeconstructionVoltage >
             1 ?
                     MaterialReplicationConfig.INSTANCE.DeconstructionConfig.DeconstructionVoltage : VA[LV];
-    public static long replicationVoltage = MaterialReplicationConfig.INSTANCE.ReplicationConfig.ReplicationVoltage > 1 ?
-            MaterialReplicationConfig.INSTANCE.ReplicationConfig.ReplicationVoltage : VA[LV];
+    public static long replicationVoltage = MaterialReplicationConfig.INSTANCE.ReplicationConfig.ReplicationVoltage >
+            1 ?
+                    MaterialReplicationConfig.INSTANCE.ReplicationConfig.ReplicationVoltage : VA[LV];
     public static long scanVoltage = MaterialReplicationConfig.INSTANCE.ReplicationConfig.ScanVoltage > 1 ?
             MaterialReplicationConfig.INSTANCE.ReplicationConfig.ScanVoltage : VA[LV];
 

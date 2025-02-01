@@ -298,6 +298,15 @@ publishing {
     }
 }
 
+tasks.register('devJar', Jar) {
+    archiveClassifier.set('dev')
+    from sourceSets.main.output
+}
+
+tasks.named('build').configure {
+    dependsOn tasks.named('devJar')
+}
+
 tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8' // Use the UTF-8 charset for Java compilation
 }
