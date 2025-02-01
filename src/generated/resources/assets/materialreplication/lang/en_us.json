@@ -38,6 +38,8 @@
   "block.materialreplication.zpm_annihilator": "§cElite Annihilator III§r",
   "block.materialreplication.zpm_deconstructor": "§cElite Deconstructor III§r",
   "block.materialreplication.zpm_replicator": "§cElite Replicator III§r",
+  "gtceu.annihilator": "Annihilation",
+  "gtceu.deconstructor": "Deconstruction",
   "gtceu.replicator": "Replication",
   "item.materialreplication.scrap": "Scrap",
   "item.materialreplication.scrap_box": "Scrap Box",
