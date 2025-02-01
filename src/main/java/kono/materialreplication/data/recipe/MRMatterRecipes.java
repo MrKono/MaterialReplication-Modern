@@ -3,6 +3,9 @@ package kono.materialreplication.data.recipe;
 import java.util.function.Consumer;
 
 import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.ItemStack;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -10,28 +13,37 @@ import com.gregtechceu.gtceu.api.GTCEuAPI;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.api.data.chemical.material.properties.PropertyKey;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
+import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
 import com.gregtechceu.gtceu.data.recipe.builder.GTRecipeBuilder;
 
 import kono.materialreplication.MaterialReplicationConfig;
+import kono.materialreplication.common.data.MRItems;
 import kono.materialreplication.common.data.MRMaterials;
-import kono.materialreplication.common.data.materials.MRMaterialFlags;
 
 import static kono.materialreplication.MRUtils.*;
 import static kono.materialreplication.common.data.MRRecipeTypes.DECONSTRUCTOR_RECIPE;
+import static kono.materialreplication.common.data.MRRecipeTypes.REPLICATOR_RECIPE;
 
 public class MRMatterRecipes {
 
+    public static String REPLICATE_NBT_TAG = "replicate_research";
+    public static String REPLICATE_ID_NBT_TAG = "material_id";
+
     public static int deconstructionBaseTime = MaterialReplicationConfig.INSTANCE.deconstruct.DeconstructionBaseTime;
     public static long deconstructionVoltage = MaterialReplicationConfig.INSTANCE.deconstruct.DeconstructionVoltage;
+    public static int replicationBaseTime = 1200;
+    public static long replicationVoltage = 30;
 
     public static void register(Consumer<FinishedRecipe> provider) {
         for (Material material : GTCEuAPI.materialManager.getRegisteredMaterials()) {
-            if (material.hasFlag(MRMaterialFlags.DISABLE_DECONSTRUCTION)) break;
+            if (material.getUnlocalizedName().isEmpty()) break;
+            // if (material.hasFlag(MRMaterialFlags.DISABLE_DECONSTRUCTION)) break;
             if (!MaterialReplicationConfig.INSTANCE.deconstruct.DeconstructOnlyElements) {
                 registerDeconstructRecipe(material, provider);
             } else if (material.isElement()) {
                 registerDeconstructRecipe(material, provider);
             }
+            registerReplicateRecipe(material, provider);
         }
     }
 
@@ -46,5 +58,47 @@ public class MRMatterRecipes {
                 .outputFluids(MRMaterials.NeutralMatter.getFluid(getNeutrons(material)))
                 .chancedOutput(TagPrefix.dustTiny, MRMaterials.PrimalMatter, 1, 1, 0)
                 .duration(getMass(material) * deconstructionBaseTime).EUt(deconstructionVoltage).save(provider);
+    }
+
+    public static void registerReplicateRecipe(@NotNull Material material, Consumer<FinishedRecipe> provider) {
+        String name = material.getName();
+        String nameUn = material.getUnlocalizedName();
+        ItemStack usb = MRItems.USB_STICK_SAVED.asStack();
+        CompoundTag tag = usb.getOrCreateTag();
+        CompoundTag compound = new CompoundTag();
+        compound.putString(REPLICATE_ID_NBT_TAG, name);
+        tag.put(REPLICATE_NBT_TAG, compound);
+        usb.setHoverName(Component.translatable("materialreplication.replicator.usb.data",
+                Component.translatable(nameUn)));
+
+        GTRecipeBuilder replicateBuilder = REPLICATOR_RECIPE.recipeBuilder(mrId(name))
+                .notConsumable(usb)
+                .duration(getMass(material) * replicationBaseTime).EUt(replicationVoltage);
+        if (material.hasProperty(PropertyKey.DUST)) {
+            replicateBuilder// .notConsumable(TagPrefix.dust, material)
+                    .outputItems(TagPrefix.dust, material);
+        } else if (material.hasProperty(PropertyKey.FLUID)) {
+            replicateBuilder// .notConsumableFluid(material.getFluid(1000))
+                    .outputFluids(material.getFluid(1000));
+        }
+        if (getProtons(material) > 1) {
+            replicateBuilder.inputFluids(MRMaterials.ChargedMatter.getFluid(getProtons(material)));
+        }
+        if (getNeutrons(material) > 1) {
+            replicateBuilder.inputFluids(MRMaterials.NeutralMatter.getFluid(getNeutrons(material)));
+        }
+        replicateBuilder.save(provider);
+
+        GTRecipeBuilder scanBuilder = GTRecipeTypes.SCANNER_RECIPES.recipeBuilder(mrId(name))
+                .inputItems(MRItems.USB_STICK)
+                .duration(getMass(material) * replicationBaseTime)
+                .EUt(replicationVoltage);
+        if (material.hasProperty(PropertyKey.DUST)) {
+            scanBuilder.inputItems(TagPrefix.dust, material);
+        } else if (material.hasProperty(PropertyKey.FLUID)) {
+            scanBuilder.inputFluids(material.getFluid(1000))
+                    .outputFluids(material.getFluid(1000));
+        }
+        scanBuilder.outputItems(usb).save(provider);
     }
 }

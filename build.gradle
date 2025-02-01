@@ -229,6 +229,10 @@ dependencies {
     compileOnly fg.deobf("mezz.jei:jei-1.20.1-common-api:15.20.0.105")
     compileOnly fg.deobf("mezz.jei:jei-1.20.1-forge-api:15.20.0.105")
     runtimeOnly fg.deobf("mezz.jei:jei-1.20.1-forge:15.20.0.105") { transitive = false }
+
+
+    compileOnly 'org.projectlombok:lombok:1.18.30'
+    annotationProcessor 'org.projectlombok:lombok:1.18.30'
 }
 
 // MixinGradle Settings

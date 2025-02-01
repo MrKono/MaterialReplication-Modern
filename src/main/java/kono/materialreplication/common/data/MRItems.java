@@ -20,6 +20,11 @@ public class MRItems {
             .lang("USB Stick")
             .register();
 
+    public static ItemEntry<ComponentItem> USB_STICK_SAVED = REGISTRATE
+            .item("usb_stick_saved", ComponentItem::create)
+            .lang("USB Stick (Saved)")
+            .register();
+
     public static ItemEntry<Item> SCRAP = REGISTRATE
             .item("scrap", Item::new)
             .lang("Scrap")

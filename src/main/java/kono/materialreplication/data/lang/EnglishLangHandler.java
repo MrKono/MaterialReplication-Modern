@@ -16,7 +16,13 @@ public class EnglishLangHandler extends LangHandler {
         replace(provider, MRMaterials.MatterAmplifier.getUnlocalizedName(), "Matter Amplifier");
 
         // Misc
-        provider.add("materialreplication.annihilator.item", "Any Items");
-        provider.add("materialreplication.annihilator.fluid", "Any Fluids");
+        replace(provider, "materialreplication.annihilator.item", "Any Items");
+        replace(provider, "materialreplication.annihilator.fluid", "Any Fluids");
+        replace(provider, "materialreplication.replicator.usb.data", "§r§3Replicate Data: §r§a%s");
+
+        // Recipe Name
+        replace(provider, "gtceu.deconstructor", "Deconstruction");
+        replace(provider, "gtceu.annihilator", "Annihilation");
+        replace(provider, "gtceu.replicator", "Replication");
     }
 }
