@@ -17,6 +17,7 @@ import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
 import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
 
+import kono.materialreplication.MaterialReplicationConfig;
 import kono.materialreplication.common.data.MRItems;
 import kono.materialreplication.common.data.MRMaterials;
 import kono.materialreplication.common.data.MRRecipeTypes;
@@ -29,6 +30,7 @@ public class MRMiscRecipes {
     public static void register(Consumer<FinishedRecipe> provider) {
         scrapRecipe(provider);
         miscRecipe(provider);
+        uuMatterRecipe(provider);
     }
 
     /**
@@ -82,6 +84,27 @@ public class MRMiscRecipes {
                 .inputItems(MRItems.SCRAP, 9)
                 .outputItems(MRItems.SCRAP_BOX)
                 .duration(10 * sec).EUt(VA[HV]).save(provider);
+    }
+
+    /**
+     * UU-Matter related recipe
+     */
+
+    public static void uuMatterRecipe(Consumer<FinishedRecipe> provider) {
+        if (MaterialReplicationConfig.INSTANCE.RecipeConfig.AddMatterRecipe) {
+            GTRecipeTypes.MIXER_RECIPES.recipeBuilder(mrId("uu_matter"))
+                    .inputFluids(MRMaterials.ChargedMatter.getFluid(50))
+                    .inputFluids(MRMaterials.NeutralMatter.getFluid(50))
+                    .outputFluids(GTMaterials.UUMatter.getFluid(50))
+                    .duration(1 * min).EUt(VA[HV]).save(provider);
+
+            // Will be removed if implemented by Greg
+            GTRecipeTypes.AUTOCLAVE_RECIPES.recipeBuilder(mrId("nether_star"))
+                    .inputItems(TagPrefix.dust, GTMaterials.NetherStar)
+                    .inputFluids(GTMaterials.UUMatter.getFluid(576))
+                    .chancedOutput(new ItemStack(Items.NETHER_STAR), 3333, 3333)
+                    .duration(60 * min).EUt(VA[HV]).save(provider);
+        }
     }
 
     /**
