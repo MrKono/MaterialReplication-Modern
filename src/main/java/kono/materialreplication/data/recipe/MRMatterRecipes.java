@@ -36,7 +36,7 @@ public class MRMatterRecipes {
             1 ? MaterialReplicationConfig.INSTANCE.DeconstructionConfig.DeconstructionBaseTime : 600;
     public static int replicationBaseTime = MaterialReplicationConfig.INSTANCE.ReplicationConfig.ReplicationBaseTime >
             1 ? MaterialReplicationConfig.INSTANCE.ReplicationConfig.ReplicationBaseTime : 1200;
-    public static int scanTIme = MaterialReplicationConfig.INSTANCE.ReplicationConfig.ScanTime > 1 ?
+    public static int scanTime = MaterialReplicationConfig.INSTANCE.ReplicationConfig.ScanTime > 1 ?
             MaterialReplicationConfig.INSTANCE.ReplicationConfig.ScanTime : 1200;
     public static long deconstructionVoltage = MaterialReplicationConfig.INSTANCE.DeconstructionConfig.DeconstructionVoltage >
             1 ? MaterialReplicationConfig.INSTANCE.DeconstructionConfig.DeconstructionVoltage : VA[LV];
@@ -44,6 +44,13 @@ public class MRMatterRecipes {
             1 ? MaterialReplicationConfig.INSTANCE.ReplicationConfig.ReplicationVoltage : VA[LV];
     public static long scanVoltage = MaterialReplicationConfig.INSTANCE.ReplicationConfig.ScanVoltage > 1 ?
             MaterialReplicationConfig.INSTANCE.ReplicationConfig.ScanVoltage : VA[LV];
+    public static int amplifierAmount = MaterialReplicationConfig.INSTANCE.RecipeConfig.MatterAmplificationRatio[0] >
+            1 ?
+                    MaterialReplicationConfig.INSTANCE.RecipeConfig.MatterAmplificationRatio[0] : 500;
+    public static int matterInput = MaterialReplicationConfig.INSTANCE.RecipeConfig.MatterAmplificationRatio[1] > 1 ?
+            MaterialReplicationConfig.INSTANCE.RecipeConfig.MatterAmplificationRatio[1] : 500;
+    public static int matterOutput = MaterialReplicationConfig.INSTANCE.RecipeConfig.MatterAmplificationRatio[2] > 1 ?
+            MaterialReplicationConfig.INSTANCE.RecipeConfig.MatterAmplificationRatio[2] : 1000;
 
     public static void register(Consumer<FinishedRecipe> provider) {
         matterRecipe(provider);
@@ -120,15 +127,15 @@ public class MRMatterRecipes {
 
         // MatterAmplifier
         GTRecipeTypes.CHEMICAL_RECIPES.recipeBuilder(mrId("charged_matter_amplified"))
-                .inputFluids(MRMaterials.MatterAmplifier.getFluid(500))
-                .inputFluids(MRMaterials.ChargedMatter.getFluid(500))
-                .outputFluids(MRMaterials.ChargedMatter.getFluid(1000))
+                .inputFluids(MRMaterials.MatterAmplifier.getFluid(amplifierAmount))
+                .inputFluids(MRMaterials.ChargedMatter.getFluid(matterInput))
+                .outputFluids(MRMaterials.ChargedMatter.getFluid(matterOutput))
                 .duration(replicationBaseTime).EUt(replicationVoltage).save(provider);
 
         GTRecipeTypes.CHEMICAL_RECIPES.recipeBuilder(mrId("neutral_matter_amplified"))
-                .inputFluids(MRMaterials.MatterAmplifier.getFluid(500))
-                .inputFluids(MRMaterials.NeutralMatter.getFluid(500))
-                .outputFluids(MRMaterials.NeutralMatter.getFluid(1000))
+                .inputFluids(MRMaterials.MatterAmplifier.getFluid(amplifierAmount))
+                .inputFluids(MRMaterials.NeutralMatter.getFluid(matterInput))
+                .outputFluids(MRMaterials.NeutralMatter.getFluid(matterOutput))
                 .duration(replicationBaseTime).EUt(replicationVoltage).save(provider);
     }
 
@@ -175,7 +182,7 @@ public class MRMatterRecipes {
 
         // Scan
         GTRecipeBuilder scanBuilder = GTRecipeTypes.SCANNER_RECIPES.recipeBuilder(mrId(name))
-                .inputItems(MRItems.USB_STICK).duration(scanTIme).EUt(scanVoltage);
+                .inputItems(MRItems.USB_STICK).duration(scanTime).EUt(scanVoltage);
         if (material.hasProperty(PropertyKey.DUST)) {
             scanBuilder.inputItems(TagPrefix.dust, material);
         } else if (material.hasProperty(PropertyKey.FLUID)) {

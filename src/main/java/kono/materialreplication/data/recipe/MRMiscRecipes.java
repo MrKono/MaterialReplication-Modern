@@ -16,6 +16,7 @@ import com.gregtechceu.gtceu.common.data.GTItems;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
 import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
+import com.gregtechceu.gtceu.data.recipe.builder.GTRecipeBuilder;
 
 import kono.materialreplication.MaterialReplicationConfig;
 import kono.materialreplication.common.data.MRItems;
@@ -91,12 +92,35 @@ public class MRMiscRecipes {
      */
 
     public static void uuMatterRecipe(Consumer<FinishedRecipe> provider) {
+        int chargedMatterAmount = MaterialReplicationConfig.INSTANCE.RecipeConfig.MatterRatio[0];
+        int neutralMatterAmount = MaterialReplicationConfig.INSTANCE.RecipeConfig.MatterRatio[1];
+        int matterAmount = MaterialReplicationConfig.INSTANCE.RecipeConfig.MatterRatio[3];
+        String cleanRoomType = MaterialReplicationConfig.INSTANCE.RecipeConfig.CleanroomType;
+
         if (MaterialReplicationConfig.INSTANCE.RecipeConfig.AddMatterRecipe) {
-            GTRecipeTypes.MIXER_RECIPES.recipeBuilder(mrId("uu_matter"))
-                    .inputFluids(MRMaterials.ChargedMatter.getFluid(50))
-                    .inputFluids(MRMaterials.NeutralMatter.getFluid(50))
-                    .outputFluids(GTMaterials.UUMatter.getFluid(50))
-                    .duration(1 * min).EUt(VA[HV]).save(provider);
+            GTRecipeBuilder builder = GTRecipeTypes.MIXER_RECIPES.recipeBuilder(mrId("uu_matter"))
+                    .duration(1 * min).EUt(VA[HV]);
+            if (chargedMatterAmount > 1) {
+                builder.inputFluids(MRMaterials.ChargedMatter.getFluid(chargedMatterAmount));
+            } else {
+                builder.inputFluids(MRMaterials.ChargedMatter.getFluid(50));
+            }
+            if (neutralMatterAmount > 1) {
+                builder.inputFluids(MRMaterials.NeutralMatter.getFluid(neutralMatterAmount));
+            } else {
+                builder.inputFluids(MRMaterials.NeutralMatter.getFluid(50));
+            }
+            if (matterAmount > 1) {
+                builder.outputFluids(GTMaterials.UUMatter.getFluid(matterAmount));
+            } else {
+                builder.outputFluids(GTMaterials.UUMatter.getFluid(50));
+            }
+            if (cleanRoomType.equals("CLEANROOM")) {
+                builder.cleanroom(CleanroomType.CLEANROOM);
+            } else if (cleanRoomType.equals("STERILE")) {
+                builder.cleanroom(CleanroomType.STERILE_CLEANROOM);
+            }
+            builder.save(provider);
 
             // Will be removed if implemented by Greg
             GTRecipeTypes.AUTOCLAVE_RECIPES.recipeBuilder(mrId("nether_star"))

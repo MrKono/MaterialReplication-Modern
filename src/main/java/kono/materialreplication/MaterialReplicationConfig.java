@@ -97,6 +97,22 @@ public class MaterialReplicationConfig {
 
         @Configurable
         @Configurable.Comment({ "Whether to add the UUMatter RecipeConfig.", "Default : false" })
-        public boolean AddMatterRecipe = false;
+        public boolean AddMatterRecipe = true;
+
+        @Configurable
+        @Configurable.Comment({ "Whether to required Cleanroom  when create UU-Matter", "Default: NONE",
+                "valid: [NONE, CLEANROOM, STERILE]" })
+        public String CleanroomType = "NONE";
+
+        @Configurable
+        @Configurable.Comment({ "Ratio of UUMatter created from two maters", "ChargedMatter, NeutralMatter, UUMatter",
+                "Default: 50, 50, 50" })
+        public int[] MatterRatio = { 50, 50, 50 };
+
+        @Configurable
+        @Configurable.Comment({ "Ratio of matter amplification",
+                "Matter Amplifier, Charge/Neutral Matter (Input), Charge/Neutral Matter (Output)",
+                "Default: 50, 50, 50" })
+        public int[] MatterAmplificationRatio = { 500, 500, 1000 };
     }
 }
