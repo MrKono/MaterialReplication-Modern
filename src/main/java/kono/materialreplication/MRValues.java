@@ -31,7 +31,7 @@ public class MRValues {
     // time
     public static final int deconstructionBaseTime = getValidValue(deconstructionCfg.DeconstructionBaseTime, 30 * sec);
     public static final int replicationBaseTime = getValidValue(replicationCfg.ReplicationBaseTime, 1 * min);
-    public static final int scanTime = getValidValue(replicationCfg.ScanVoltage, 1 * min);
+    public static final int scanTime = getValidValue(replicationCfg.ScanTime, 1 * min);
 
     // Voltage
     public static final long deconstructionVoltage = getValidValue(deconstructionCfg.DeconstructionVoltage, VA[LV]);

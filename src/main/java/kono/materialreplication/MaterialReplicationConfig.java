@@ -97,7 +97,7 @@ public class MaterialReplicationConfig {
 
         @Configurable
         @Configurable.Comment({ "Whether to add the UUMatter RecipeConfig.", "Default : false" })
-        public boolean AddMatterRecipe = true;
+        public boolean AddMatterRecipe = false;
 
         @Configurable
         @Configurable.Comment({ "Whether to required Cleanroom  when create UU-Matter", "Default: NONE",
