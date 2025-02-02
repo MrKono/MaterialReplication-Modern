@@ -21,36 +21,12 @@ import kono.materialreplication.common.data.MRItems;
 import kono.materialreplication.common.data.MRMaterials;
 import kono.materialreplication.common.data.materials.MRMaterialFlags;
 
-import static com.gregtechceu.gtceu.api.GTValues.LV;
-import static com.gregtechceu.gtceu.api.GTValues.VA;
 import static kono.materialreplication.MRUtils.*;
+import static kono.materialreplication.MRValues.*;
 import static kono.materialreplication.common.data.MRRecipeTypes.DECONSTRUCTOR_RECIPE;
 import static kono.materialreplication.common.data.MRRecipeTypes.REPLICATOR_RECIPE;
 
 public class MRMatterRecipes {
-
-    public static String REPLICATE_NBT_TAG = "replicate_research";
-    public static String REPLICATE_ID_NBT_TAG = "material_id";
-
-    public static int deconstructionBaseTime = MaterialReplicationConfig.INSTANCE.DeconstructionConfig.DeconstructionBaseTime >
-            1 ? MaterialReplicationConfig.INSTANCE.DeconstructionConfig.DeconstructionBaseTime : 600;
-    public static int replicationBaseTime = MaterialReplicationConfig.INSTANCE.ReplicationConfig.ReplicationBaseTime >
-            1 ? MaterialReplicationConfig.INSTANCE.ReplicationConfig.ReplicationBaseTime : 1200;
-    public static int scanTime = MaterialReplicationConfig.INSTANCE.ReplicationConfig.ScanTime > 1 ?
-            MaterialReplicationConfig.INSTANCE.ReplicationConfig.ScanTime : 1200;
-    public static long deconstructionVoltage = MaterialReplicationConfig.INSTANCE.DeconstructionConfig.DeconstructionVoltage >
-            1 ? MaterialReplicationConfig.INSTANCE.DeconstructionConfig.DeconstructionVoltage : VA[LV];
-    public static long replicationVoltage = MaterialReplicationConfig.INSTANCE.ReplicationConfig.ReplicationVoltage >
-            1 ? MaterialReplicationConfig.INSTANCE.ReplicationConfig.ReplicationVoltage : VA[LV];
-    public static long scanVoltage = MaterialReplicationConfig.INSTANCE.ReplicationConfig.ScanVoltage > 1 ?
-            MaterialReplicationConfig.INSTANCE.ReplicationConfig.ScanVoltage : VA[LV];
-    public static int amplifierAmount = MaterialReplicationConfig.INSTANCE.RecipeConfig.MatterAmplificationRatio[0] >
-            1 ?
-                    MaterialReplicationConfig.INSTANCE.RecipeConfig.MatterAmplificationRatio[0] : 500;
-    public static int matterInput = MaterialReplicationConfig.INSTANCE.RecipeConfig.MatterAmplificationRatio[1] > 1 ?
-            MaterialReplicationConfig.INSTANCE.RecipeConfig.MatterAmplificationRatio[1] : 500;
-    public static int matterOutput = MaterialReplicationConfig.INSTANCE.RecipeConfig.MatterAmplificationRatio[2] > 1 ?
-            MaterialReplicationConfig.INSTANCE.RecipeConfig.MatterAmplificationRatio[2] : 1000;
 
     public static void register(Consumer<FinishedRecipe> provider) {
         matterRecipe(provider);

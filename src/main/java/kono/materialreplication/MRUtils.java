@@ -20,9 +20,6 @@ public class MRUtils {
         return new ResourceLocation(MODID, name);
     }
 
-    public static final int sec = 20;
-    public static final int min = 1200;
-
     public static int getProtons(@NotNull Material material) {
         return (int) material.getProtons();
     }

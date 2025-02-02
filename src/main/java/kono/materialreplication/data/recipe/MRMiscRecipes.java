@@ -25,6 +25,7 @@ import kono.materialreplication.common.data.MRRecipeTypes;
 
 import static com.gregtechceu.gtceu.api.GTValues.*;
 import static kono.materialreplication.MRUtils.*;
+import static kono.materialreplication.MRValues.*;
 
 public class MRMiscRecipes {
 
@@ -35,7 +36,7 @@ public class MRMiscRecipes {
     }
 
     /**
-     * Fake RecipeConfig for annihilator
+     * Fake Recipe for annihilator
      **/
     public static void scrapRecipe(Consumer<FinishedRecipe> provider) {
         ItemStack itemStack = new ItemStack(Items.BARRIER);
@@ -88,33 +89,18 @@ public class MRMiscRecipes {
     }
 
     /**
-     * UU-Matter related recipe
+     * UUMatter related recipe
      */
-
     public static void uuMatterRecipe(Consumer<FinishedRecipe> provider) {
-        int chargedMatterAmount = MaterialReplicationConfig.INSTANCE.RecipeConfig.MatterRatio[0];
-        int neutralMatterAmount = MaterialReplicationConfig.INSTANCE.RecipeConfig.MatterRatio[1];
-        int matterAmount = MaterialReplicationConfig.INSTANCE.RecipeConfig.MatterRatio[3];
         String cleanRoomType = MaterialReplicationConfig.INSTANCE.RecipeConfig.CleanroomType;
 
         if (MaterialReplicationConfig.INSTANCE.RecipeConfig.AddMatterRecipe) {
+            // Charged Matter + Neutral Matter -> UUMatter
             GTRecipeBuilder builder = GTRecipeTypes.MIXER_RECIPES.recipeBuilder(mrId("uu_matter"))
+                    .inputFluids(MRMaterials.ChargedMatter.getFluid(chargedMatterAmount))
+                    .inputFluids(MRMaterials.NeutralMatter.getFluid(neutralMatterAmount))
+                    .outputFluids(GTMaterials.UUMatter.getFluid(matterAmount))
                     .duration(1 * min).EUt(VA[HV]);
-            if (chargedMatterAmount > 1) {
-                builder.inputFluids(MRMaterials.ChargedMatter.getFluid(chargedMatterAmount));
-            } else {
-                builder.inputFluids(MRMaterials.ChargedMatter.getFluid(50));
-            }
-            if (neutralMatterAmount > 1) {
-                builder.inputFluids(MRMaterials.NeutralMatter.getFluid(neutralMatterAmount));
-            } else {
-                builder.inputFluids(MRMaterials.NeutralMatter.getFluid(50));
-            }
-            if (matterAmount > 1) {
-                builder.outputFluids(GTMaterials.UUMatter.getFluid(matterAmount));
-            } else {
-                builder.outputFluids(GTMaterials.UUMatter.getFluid(50));
-            }
             if (cleanRoomType.equals("CLEANROOM")) {
                 builder.cleanroom(CleanroomType.CLEANROOM);
             } else if (cleanRoomType.equals("STERILE")) {
