@@ -162,8 +162,7 @@ public class MRMatterRecipes {
         if (material.hasProperty(PropertyKey.DUST)) {
             scanBuilder.inputItems(TagPrefix.dust, material);
         } else if (material.hasProperty(PropertyKey.FLUID)) {
-            scanBuilder.inputFluids(material.getFluid(1000))
-                    .outputFluids(material.getFluid(1000));
+            scanBuilder.inputFluids(material.getFluid(1000));
         }
         scanBuilder.outputItems(usb).save(provider);
     }
