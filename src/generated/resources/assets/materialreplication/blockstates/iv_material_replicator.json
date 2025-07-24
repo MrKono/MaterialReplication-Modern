@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "materialreplication:block/machine/iv_material_replicator",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "materialreplication:block/machine/iv_material_replicator"
+    },
+    "facing=south": {
+      "model": "materialreplication:block/machine/iv_material_replicator",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "materialreplication:block/machine/iv_material_replicator",
+      "y": 270
+    }
+  }
+}

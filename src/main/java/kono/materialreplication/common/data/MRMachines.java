@@ -1,5 +1,6 @@
 package kono.materialreplication.common.data;
 
+import java.util.Locale;
 import java.util.function.BiFunction;
 
 import com.gregtechceu.gtceu.GTCEu;
@@ -38,25 +39,6 @@ public class MRMachines {
     public static final MachineDefinition[] REPLICATOR = registerSimpleMachines("material_replicator",
             MRRecipeTypes.REPLICATOR_RECIPE, hvCappedTankSizeFunction);
 
-    public static MachineDefinition[] registerSimpleMachines(String name,
-                                                             GTRecipeType recipeType,
-                                                             Int2IntFunction tankScalingFunction,
-                                                             int... tiers) {
-        return registerTieredMachines(name,
-                (holder, tier) -> new SimpleTieredMachine(holder, tier, tankScalingFunction), (tier, builder) -> builder
-                        .langValue("%s %s %s".formatted(VLVH[tier], toEnglishName(name), VLVT[tier]))
-                        .editableUI(SimpleTieredMachine.EDITABLE_UI_CREATOR.apply(GTCEu.id(name), recipeType))
-                        .rotationState(RotationState.NON_Y_AXIS)
-                        .recipeType(recipeType)
-                        .recipeModifier(
-                                GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK))
-                        .workableTieredHullRenderer(mrId("block/machines/" + name))
-                        .tooltips(workableTiered(tier, GTValues.V[tier], GTValues.V[tier] * 64, recipeType,
-                                tankScalingFunction.apply(tier), true))
-                        .register(),
-                tiers);
-    }
-
     public static MachineDefinition[] registerSimpleMachines(String name, GTRecipeType recipeType,
                                                              Int2IntFunction tankScalingFunction) {
         return registerSimpleMachines(name, recipeType, tankScalingFunction, ELECTRIC_TIERS);
@@ -66,17 +48,41 @@ public class MRMachines {
         return registerSimpleMachines(name, recipeType, defaultTankSizeFunction);
     }
 
+    public static MachineDefinition[] registerSimpleMachines(String name,
+                                                             GTRecipeType recipeType,
+                                                             Int2IntFunction tankScalingFunction,
+                                                             int... tiers) {
+        return registerTieredMachines(name,
+                (holder, tier) -> new SimpleTieredMachine(holder, tier, tankScalingFunction), (tier, builder) -> {
+                    {
+                        builder.recipeModifier(GTRecipeModifiers.OC_NON_PERFECT);
+                    }
+                    return builder
+                            .langValue("%s %s %s".formatted(VLVH[tier], toEnglishName(name), VLVT[tier]))
+                            .editableUI(SimpleTieredMachine.EDITABLE_UI_CREATOR.apply(GTCEu.id(name), recipeType))
+                            .rotationState(RotationState.NON_Y_AXIS)
+                            .recipeType(recipeType)
+                            .recipeModifier(
+                                    GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK))
+                            .workableTieredHullModel(mrId("block/machines/" + name))
+                            .tooltips(workableTiered(tier, GTValues.V[tier], GTValues.V[tier] * 64, recipeType,
+                                    tankScalingFunction.apply(tier), true))
+                            .register();
+                },
+                tiers);
+    }
+
     public static MachineDefinition[] registerTieredMachines(String name,
                                                              BiFunction<IMachineBlockEntity, Integer, MetaMachine> factory,
                                                              BiFunction<Integer, MachineBuilder<MachineDefinition>, MachineDefinition> builder,
                                                              int... tiers) {
-        MachineDefinition[] definitions = new MachineDefinition[tiers.length];
-        for (int i = 0; i < tiers.length; i++) {
-            int tier = tiers[i];
+        MachineDefinition[] definitions = new MachineDefinition[GTValues.TIER_COUNT];
+        for (int tier : tiers) {
             var register = REGISTRATE
-                    .machine(GTValues.VN[tier].toLowerCase() + "_" + name, holder -> factory.apply(holder, tier))
+                    .machine(GTValues.VN[tier].toLowerCase(Locale.ROOT) + "_" + name,
+                            holder -> factory.apply(holder, tier))
                     .tier(tier);
-            definitions[i] = builder.apply(tier, register);
+            definitions[tier] = builder.apply(tier, register);
         }
         return definitions;
     }

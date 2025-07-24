@@ -11,10 +11,7 @@ import net.minecraftforge.items.wrapper.CombinedInvWrapper;
 
 import org.jetbrains.annotations.Nullable;
 
-import com.gregtechceu.gtceu.api.capability.recipe.FluidRecipeCapability;
-import com.gregtechceu.gtceu.api.capability.recipe.IO;
-import com.gregtechceu.gtceu.api.capability.recipe.IRecipeCapabilityHolder;
-import com.gregtechceu.gtceu.api.capability.recipe.ItemRecipeCapability;
+import com.gregtechceu.gtceu.api.capability.recipe.*;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 
@@ -30,7 +27,7 @@ public class AnnihilatorCustomLogic implements GTRecipeType.ICustomRecipeLogic {
     @Override
     public @Nullable GTRecipe createCustomRecipe(IRecipeCapabilityHolder holder) {
         IItemHandlerModifiable[] itemInputs = Objects
-                .requireNonNullElseGet(holder.getCapabilitiesProxy().get(IO.IN, ItemRecipeCapability.CAP),
+                .requireNonNullElseGet(holder.getCapabilitiesFlat(IO.IN, ItemRecipeCapability.CAP),
                         ArrayList::new)
                 .stream()
                 .filter(IItemHandlerModifiable.class::isInstance)
@@ -38,7 +35,7 @@ public class AnnihilatorCustomLogic implements GTRecipeType.ICustomRecipeLogic {
                 .toArray(IItemHandlerModifiable[]::new);
 
         IFluidHandler[] fluidInputs = Objects
-                .requireNonNullElseGet(holder.getCapabilitiesProxy().get(IO.IN, FluidRecipeCapability.CAP),
+                .requireNonNullElseGet(holder.getCapabilitiesFlat(IO.IN, FluidRecipeCapability.CAP),
                         ArrayList::new)
                 .stream()
                 .filter(IFluidHandler.class::isInstance).map(IFluidHandler.class::cast)
@@ -58,6 +55,7 @@ public class AnnihilatorCustomLogic implements GTRecipeType.ICustomRecipeLogic {
                         .duration(600).EUt(VA[LV]).buildRawRecipe();
             }
         }
+
         // Fluid annihilation
         for (IFluidHandler fluidInput : fluidInputs) {
             FluidStack fluidStack1 = fluidInput.getFluidInTank(0);

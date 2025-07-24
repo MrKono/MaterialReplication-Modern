@@ -4,13 +4,13 @@ import java.util.function.Consumer;
 
 import net.minecraft.data.recipes.FinishedRecipe;
 
-import com.gregtechceu.gtceu.api.data.chemical.material.stack.UnificationEntry;
+import com.gregtechceu.gtceu.api.data.chemical.material.stack.MaterialEntry;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 
 import kono.materialreplication.common.data.MRMachines;
 
-import static com.gregtechceu.gtceu.data.recipe.CraftingComponent.*;
+import static com.gregtechceu.gtceu.data.recipe.GTCraftingComponents.*;
 import static com.gregtechceu.gtceu.data.recipe.misc.MetaTileEntityLoader.registerMachineRecipe;
 
 public class MRMachineRecipes {
@@ -25,7 +25,7 @@ public class MRMachineRecipes {
                 'Q', CABLE_QUAD);
         // Annihilator
         registerMachineRecipe(provider, MRMachines.ANNIHILATOR, "GCG", "PHP", "WCW",
-                'G', new UnificationEntry(TagPrefix.dust, GTMaterials.Glowstone),
+                'G', new MaterialEntry(TagPrefix.dust, GTMaterials.Glowstone),
                 'C', CIRCUIT,
                 'P', PISTON,
                 'W', CABLE,
