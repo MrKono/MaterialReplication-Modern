@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "materialreplication:block/machine/opv_material_deconstructor",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "materialreplication:block/machine/opv_material_deconstructor"
+    },
+    "facing=south": {
+      "model": "materialreplication:block/machine/opv_material_deconstructor",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "materialreplication:block/machine/opv_material_deconstructor",
+      "y": 270
+    }
+  }
+}

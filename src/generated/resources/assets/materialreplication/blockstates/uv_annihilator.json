@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "materialreplication:block/machine/uv_annihilator",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "materialreplication:block/machine/uv_annihilator"
+    },
+    "facing=south": {
+      "model": "materialreplication:block/machine/uv_annihilator",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "materialreplication:block/machine/uv_annihilator",
+      "y": 270
+    }
+  }
+}
