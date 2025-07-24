@@ -40,7 +40,6 @@ public class AnnihilatorCustomLogic implements GTRecipeType.ICustomRecipeLogic {
                 .stream()
                 .filter(IFluidHandler.class::isInstance).map(IFluidHandler.class::cast)
                 .toArray(IFluidHandler[]::new);
-        // }
 
         // Item annihilation
         CombinedInvWrapper inputs = new CombinedInvWrapper(itemInputs);
@@ -56,6 +55,7 @@ public class AnnihilatorCustomLogic implements GTRecipeType.ICustomRecipeLogic {
                         .duration(600).EUt(VA[LV]).buildRawRecipe();
             }
         }
+
         // Fluid annihilation
         for (IFluidHandler fluidInput : fluidInputs) {
             FluidStack fluidStack1 = fluidInput.getFluidInTank(0);
