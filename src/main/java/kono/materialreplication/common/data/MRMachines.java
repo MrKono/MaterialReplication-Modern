@@ -82,7 +82,7 @@ public class MRMachines {
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("XXXXX", "XXXXX", "XXXXX", "XXXXX", "XXXXX")
                     .aisle("XXXXX", "XCCCX", "XBBBX", "XCCCX", "XXXXX")
-                    .aisle("XXXXX", "XCCCX", "XBTBX", "XCCCX", "XXMXX")
+                    .aisle("XXXXX", "XCCCX", "XBFBX", "XCCCX", "XXMXX")
                     .aisle("XXXXX", "XCCCX", "XBBBX", "XCCCX", "XXXXX")
                     .aisle("XXXXX", "XXSXX", "XXXXX", "XXXXX", "XXXXX")
                     .where('S', controller(blocks(definition.getBlock())))
@@ -92,6 +92,7 @@ public class MRMachines {
                     .where('C', blocks(GCYMBlocks.CRUSHING_WHEELS.get()))
                     .where('B', blocks(GCYMBlocks.SLICING_BLADES.get()))
                     .where('M', abilities(PartAbility.MUFFLER))
+                    .where('F', blocks(GTBlocks.FUSION_COIL.get()))
                     .build())
             .workableCasingModel(GTCEu.id("block/casings/gcym/vibration_safe_casing"),
                     GTCEu.id("block/multiblock/large_chemical_reactor"))
@@ -117,6 +118,7 @@ public class MRMachines {
                     .where('F', blocks(GTBlocks.FUSION_CASING_MK3.get()))
                     .where('G', blocks(GTBlocks.FUSION_GLASS.get()))
                     .where('C', blocks(GTBlocks.FUSION_COIL.get()))
+                    .where('A', air())
                     .build())
             .workableCasingModel(GTCEu.id("block/casings/gcym/atomic_casing"),
                     GTCEu.id("block/multiblock/large_chemical_reactor"))
