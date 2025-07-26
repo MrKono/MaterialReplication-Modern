@@ -8,6 +8,9 @@
   "block.materialreplication.iv_annihilator": "§9精鋭型抹消機 §r",
   "block.materialreplication.iv_material_deconstructor": "§9精鋭型物質分解機 §r",
   "block.materialreplication.iv_material_replicator": "§9精鋭型物質複製機 §r",
+  "block.materialreplication.large_annihilator": "大型抹消機",
+  "block.materialreplication.large_deconstructor": "大型物質分解機",
+  "block.materialreplication.large_replicator": "大型物質複製機",
   "block.materialreplication.luv_annihilator": "§d精鋭型抹消機 II§r",
   "block.materialreplication.luv_material_deconstructor": "§d精鋭型物質分解機 II§r",
   "block.materialreplication.luv_material_replicator": "§d精鋭型物質複製機 II§r",
@@ -50,6 +53,7 @@
   "material.materialreplication.matter_amplifier": "マター増幅剤",
   "material.materialreplication.neutral_matter": "中性マター",
   "material.materialreplication.primal_matter": "プライマルマター",
+  "material.materialreplication.trinaquadalloy": "トリニウムナクアダ合金",
   "materialreplication.annihilator.fluid": "任意の液体",
   "materialreplication.annihilator.item": "任意のアイテム",
   "materialreplication.replicator.usb.data": "§r§3複製データ: §r§a%s"

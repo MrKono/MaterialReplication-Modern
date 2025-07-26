@@ -8,6 +8,9 @@
   "block.materialreplication.iv_annihilator": "ɹ§ ɹoʇɐןıɥıuuⱯ ǝʇıןƎ6§",
   "block.materialreplication.iv_material_deconstructor": "ɹ§ ɹoʇɔnɹʇsuoɔǝᗡ ןɐıɹǝʇɐW ǝʇıןƎ6§",
   "block.materialreplication.iv_material_replicator": "ɹ§ ɹoʇɐɔıןdǝᴚ ןɐıɹǝʇɐW ǝʇıןƎ6§",
+  "block.materialreplication.large_annihilator": "ɹoʇɐןıɥıuuⱯ ǝbɹɐꞀ",
+  "block.materialreplication.large_deconstructor": "ɹoʇɔnɹʇsuoɔǝᗡ ǝbɹɐꞀ",
+  "block.materialreplication.large_replicator": "ɹoʇɐɔıןdǝᴚ ǝbɹɐꞀ",
   "block.materialreplication.luv_annihilator": "ɹ§II ɹoʇɐןıɥıuuⱯ ǝʇıןƎp§",
   "block.materialreplication.luv_material_deconstructor": "ɹ§II ɹoʇɔnɹʇsuoɔǝᗡ ןɐıɹǝʇɐW ǝʇıןƎp§",
   "block.materialreplication.luv_material_replicator": "ɹ§II ɹoʇɐɔıןdǝᴚ ןɐıɹǝʇɐW ǝʇıןƎp§",
@@ -69,6 +72,7 @@
   "material.materialreplication.matter_amplifier": "ɹǝıɟıןdɯⱯ ɹǝʇʇɐW",
   "material.materialreplication.neutral_matter": "ɹǝʇʇɐW ןɐɹʇnǝN",
   "material.materialreplication.primal_matter": "ɹǝʇʇɐW ןɐɯıɹԀ",
+  "material.materialreplication.trinaquadalloy": "ʎoןןⱯ ɥɐpɐnbɐN-ɯnıuıɹ⟘",
   "materialreplication.annihilator.fluid": "spınןℲ ʎuⱯ",
   "materialreplication.annihilator.item": "sɯǝʇI ʎuⱯ",
   "materialreplication.replicator.usb.data": "%sɐ§ɹ§ :ɐʇɐᗡ ǝʇɐɔıןdǝᴚƐ§ɹ§"

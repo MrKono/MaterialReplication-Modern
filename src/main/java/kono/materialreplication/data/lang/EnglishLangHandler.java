@@ -25,6 +25,7 @@ public class EnglishLangHandler extends LangHandler {
         replace(provider, MRMaterials.ChargedMatter.getUnlocalizedName(), "Charged Matter");
         replace(provider, MRMaterials.NeutralMatter.getUnlocalizedName(), "Neutral Matter");
         replace(provider, MRMaterials.MatterAmplifier.getUnlocalizedName(), "Matter Amplifier");
+        replace(provider, MRMaterials.Trinaquadalloy.getUnlocalizedName(), "Trinium-Naquadah Alloy");
 
         // Misc
         replace(provider, "materialreplication.annihilator.item", "Any Items");
