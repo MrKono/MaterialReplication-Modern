@@ -2,18 +2,17 @@ package kono.materialreplication.data.recipe;
 
 import java.util.function.Consumer;
 
-import com.gregtechceu.gtceu.api.GTValues;
-import com.gregtechceu.gtceu.common.data.GTItems;
-import com.gregtechceu.gtceu.data.recipe.CustomTags;
-import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
-import com.sun.jna.platform.win32.OaIdl;
 import net.minecraft.data.recipes.FinishedRecipe;
 
+import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.chemical.material.stack.MaterialEntry;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
+import com.gregtechceu.gtceu.common.data.GTItems;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
 import com.gregtechceu.gtceu.config.ConfigHolder;
+import com.gregtechceu.gtceu.data.recipe.CustomTags;
+import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper;
 
 import kono.materialreplication.common.data.MRMachines;
 import kono.materialreplication.common.data.MRMaterials;
@@ -59,7 +58,8 @@ public class MRMachineRecipes {
                 .addMaterialInfo(true).save(provider);
 
         // Large Deconstructor
-        VanillaRecipeHelper.addShapedRecipe(provider, mrId("large_deconstructor"), MRMachines.LARGE_DECONSTRUCTOR.asStack(),
+        VanillaRecipeHelper.addShapedRecipe(provider, mrId("large_deconstructor"),
+                MRMachines.LARGE_DECONSTRUCTOR.asStack(),
                 "FCF", "EDE", "FQF",
                 'C', CustomTags.ZPM_CIRCUITS,
                 'D', MRMachines.DECONSTRUCTOR[GTValues.LuV].asStack(),
