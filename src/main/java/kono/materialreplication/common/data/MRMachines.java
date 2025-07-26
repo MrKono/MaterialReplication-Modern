@@ -13,7 +13,9 @@ import com.gregtechceu.gtceu.api.machine.SimpleTieredMachine;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.gregtechceu.gtceu.api.recipe.OverclockingLogic;
 import com.gregtechceu.gtceu.api.registry.registrate.MachineBuilder;
+import com.gregtechceu.gtceu.common.data.GTMedicalConditions;
 import com.gregtechceu.gtceu.common.data.GTRecipeModifiers;
+import com.gregtechceu.gtceu.config.ConfigHolder;
 
 import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.common.data.machines.GTMachineUtils.*;
@@ -37,11 +39,17 @@ public class MRMachines {
             MRRecipeTypes.ANNIHILATOR_RECIPE, largeTankSizeFunction);
 
     public static final MachineDefinition[] REPLICATOR = registerSimpleMachines("material_replicator",
-            MRRecipeTypes.REPLICATOR_RECIPE, hvCappedTankSizeFunction);
+            MRRecipeTypes.REPLICATOR_RECIPE, hvCappedTankSizeFunction, true);
+
+    public static MachineDefinition[] registerSimpleMachines(String name, GTRecipeType recipeType,
+                                                             Int2IntFunction tankScalingFunction,
+                                                             boolean hasPollutionDebuff) {
+        return registerSimpleMachines(name, recipeType, tankScalingFunction, hasPollutionDebuff, ELECTRIC_TIERS);
+    }
 
     public static MachineDefinition[] registerSimpleMachines(String name, GTRecipeType recipeType,
                                                              Int2IntFunction tankScalingFunction) {
-        return registerSimpleMachines(name, recipeType, tankScalingFunction, ELECTRIC_TIERS);
+        return registerSimpleMachines(name, recipeType, tankScalingFunction, false, ELECTRIC_TIERS);
     }
 
     public static MachineDefinition[] registerSimpleMachines(String name, GTRecipeType recipeType) {
@@ -51,10 +59,17 @@ public class MRMachines {
     public static MachineDefinition[] registerSimpleMachines(String name,
                                                              GTRecipeType recipeType,
                                                              Int2IntFunction tankScalingFunction,
+                                                             boolean hasPollutionDebuff,
                                                              int... tiers) {
         return registerTieredMachines(name,
                 (holder, tier) -> new SimpleTieredMachine(holder, tier, tankScalingFunction), (tier, builder) -> {
-                    {
+                    if (hasPollutionDebuff) {
+                        builder.recipeModifiers(GTRecipeModifiers.ENVIRONMENT_REQUIREMENT
+                                .apply(GTMedicalConditions.CARBON_MONOXIDE_POISONING, 100 * tier),
+                                GTRecipeModifiers.OC_NON_PERFECT)
+                                .conditionalTooltip(defaultEnvironmentRequirement(),
+                                        ConfigHolder.INSTANCE.gameplay.environmentalHazards);
+                    } else {
                         builder.recipeModifier(GTRecipeModifiers.OC_NON_PERFECT);
                     }
                     return builder
