@@ -14,6 +14,7 @@ public class MRMaterials {
     public static Material ChargedMatter;
     public static Material NeutralMatter;
     public static Material MatterAmplifier;
+    public static Material Trinaquadalloy;
 
     public static void init() {
         MRMaterial.init();
