@@ -49,7 +49,12 @@ public class AnnihilatorCustomLogic implements GTRecipeType.ICustomRecipeLogic {
                 ItemStack inputStack = item.copy();
                 inputStack.setCount(1);
                 return MRRecipeTypes.ANNIHILATOR_RECIPE
-                        .recipeBuilder(mrId(inputStack.getItem().toString().toLowerCase()))
+                        .recipeBuilder(mrId(inputStack
+                                .getItem()
+                                .toString()
+                                .toLowerCase()
+                                // Ensure there are no invalid characters
+                                .replaceAll("[^a-z0-9/._-]", "_")))
                         .inputItems(inputStack)
                         .chancedOutput(MRItems.SCRAP.asStack(), 1, 0)
                         .duration(600).EUt(VA[LV]).buildRawRecipe();
