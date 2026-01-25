@@ -1,4 +1,8 @@
 ## Changelog
+### 1.20.1-2.1.0-beta
+- [Dependence Update] GTCEuM: 7.0.2 -> 7.4.0
+- [Fix] [#9 (Crash when attempting to annihilate AE2 Cables)](https://github.com/MrKono/MaterialReplication-Modern/issues/9) Thanks to @Annwan
+---
 ### 1.20.1-2.0.0-beta
 - [Add] Large machine
 - [Add] Pollution debuff
