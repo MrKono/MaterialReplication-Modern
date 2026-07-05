@@ -214,7 +214,7 @@ dependencies {
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
 
 
-    // GTCEuM 7.0.2
+    // GTCEuM 7.5.3
     implementation fg.deobf("com.gregtechceu.gtceu:gtceu-1.20.1:7.5.3:") { transitive = false }
     // LDLib 1.0.40.b
     implementation fg.deobf("com.lowdragmc.ldlib:ldlib-forge-1.20.1:1.0.40.b") { transitive = false }
@@ -225,7 +225,7 @@ dependencies {
     // REI
     // Configuration 1.2.2.0
     implementation fg.deobf("dev.toma.configuration:configuration-forge-1.20.1:2.2.0")
-    // JEI 15.20.0.105
+    // JEI 15.20.0.115
     compileOnly fg.deobf("mezz.jei:jei-1.20.1-common-api:15.20.0.115")
     compileOnly fg.deobf("mezz.jei:jei-1.20.1-forge-api:15.20.0.115")
     runtimeOnly fg.deobf("mezz.jei:jei-1.20.1-forge:15.20.0.115") { transitive = false }
